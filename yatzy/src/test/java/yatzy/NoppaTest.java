@@ -86,15 +86,6 @@ public class NoppaTest {
     }
     
     @Test
-    public void luotuNoppaEiLukittu() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        
-        assertFalse(n.onkoLukittu());
-    }
-    
-    @Test
     public void uusiArvoAntaaHyvaksyttavanArvonKunYksiArvo() {
         ArrayList<Integer> arvot = new ArrayList<Integer>();
         arvot.add(6);
@@ -136,28 +127,6 @@ public class NoppaTest {
         n.heitaNoppaa();
         
         assertTrue(arvot.contains(n.getArvo()));
-    }
-    
-    @Test
-    public void lukitseToimii() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        n.lukitse();
-        
-        assertTrue(n.onkoLukittu());
-    }
-    
-    @Test
-    public void vapautaToimii() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        n.lukitse();
-        n.vapauta();
-        
-        assertFalse(n.onkoLukittu());
-    }
-    
+    }   
     
 }

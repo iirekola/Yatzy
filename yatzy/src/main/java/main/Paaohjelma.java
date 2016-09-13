@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import yatzy.Kasi;
 import yatzy.Noppa;
 
 public class Paaohjelma {
@@ -13,13 +14,15 @@ public class Paaohjelma {
        a.add(3);
        a.add(4);
        a.add(5);
+       a.add(6);
        
-       Noppa n = new Noppa(a);
        
-       while (n.getArvo() != 5) {
-           n.heitaNoppaa();
-           System.out.println(n.getArvo());
-       }
+       
+       
+       Kasi k = new Kasi(new Noppa(a), 5);
+       System.out.println("Käsi:\n" + k.tulostaKasi());
+       k.heitaKaikkiNopat();
+       System.out.println("Käsi:\n" + k.tulostaKasi());
         
         
         
