@@ -9,9 +9,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class ArvojoukkoTest {
+public class KasiTest {
     
-    public ArvojoukkoTest() {
+    public KasiTest() {
     }
     
     @BeforeClass
@@ -30,4 +30,9 @@ public class ArvojoukkoTest {
     public void tearDown() {
     }
 
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
 }

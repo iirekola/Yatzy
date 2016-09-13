@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import yatzy.Arvojoukko;
 import yatzy.Noppa;
 
 public class Paaohjelma {
@@ -14,9 +13,8 @@ public class Paaohjelma {
        a.add(3);
        a.add(4);
        a.add(5);
-       Arvojoukko b = new Arvojoukko(a);
-        System.out.println(a.size());
-       Noppa n = new Noppa(b);
+       
+       Noppa n = new Noppa(a);
        
        while (n.getArvo() != 5) {
            n.heitaNoppaa();
