@@ -18,6 +18,10 @@ public class Kasi {
         }
     }
     
+    public int[] getNopat() {
+        return this.nopat;
+    }
+    
     public void heitaKaikkiNopat() {
         for (int i = 0; i < nopat.length; i++) {
             heitaNoppa(i);
@@ -36,5 +40,6 @@ public class Kasi {
         }
         return palautus;
     }
+    
 
 }
