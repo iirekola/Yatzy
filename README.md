@@ -5,5 +5,5 @@ Yatzy on peli, jossa pelaaja heittää viittä noppaa ja kirjaa tulokset pitetau
 Ohjelmointiprojektin tavoitteena on tuottaa graafisen käyttöliittymän kautta pelattava Yatzy-peli. Mikäli aikaa jää, peliin on tarkoitus lisätä sen eri variantteja.
 
 ##Dokumentaatio##
-[aiheen kuvaus](dokumentaatio/aiheenKuvausJaRakenne.md)
+[aiheen kuvaus](dokumentaatio/aiheenKuvausJaRakenne.md),
 [tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
