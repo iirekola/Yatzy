@@ -19,5 +19,5 @@ Pelaaja heittää viittä noppaa. Hän voi kahdesti valita heittävänsä osan n
 - Variantit eri säännöin
 - Ulkoasun valinta
 
-**[Luokkakaavio](dokumentaatio/yatzy.png "Luokkakaavio")**
+**[Luokkakaavio](yatzy.png "Luokkakaavio")**
 
