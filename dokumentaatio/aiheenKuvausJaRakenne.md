@@ -1,4 +1,4 @@
-#Yatzy#
+﻿#Yatzy#
 
 :game_die::game_die::game_die::game_die::game_die:
 
@@ -18,3 +18,6 @@ Pelaaja heittää viittä noppaa. Hän voi kahdesti valita heittävänsä osan n
 - Moninpeli
 - Variantit eri säännöin
 - Ulkoasun valinta
+
+**[Luokkakaavio](dokumentaatio/yatzy.png "Luokkakaavio")**
+
