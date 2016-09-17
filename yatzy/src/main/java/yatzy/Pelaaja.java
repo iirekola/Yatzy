@@ -6,8 +6,12 @@ public class Pelaaja {
     private Pistetaulukko pisteet;
     
     public Pelaaja(String nimi) {
-        this.nimi = nimi;
+        this.nimi = "";
         this.pisteet = new Pistetaulukko();
+    }
+    
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
     }
     
     public String getNimi() {
