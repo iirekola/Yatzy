@@ -40,6 +40,4 @@ public class Kasi {
         }
         return palautus;
     }
-    
-
 }

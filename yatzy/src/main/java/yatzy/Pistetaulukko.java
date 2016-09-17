@@ -30,4 +30,13 @@ public class Pistetaulukko {
     public void laskeJaTallennaPisteet(Kasi kasi, Sarake sarake) {
         //todo
     }
+    
+    public boolean onTaysi() {
+        for (Sarake sarake : sarakkeet) {
+            if (sarake.getPisteet() == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
