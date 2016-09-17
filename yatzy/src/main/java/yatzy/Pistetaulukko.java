@@ -3,10 +3,13 @@ package yatzy;
 
 
 public class Pistetaulukko {
-    Sarake[] sarakkeet;
+    private Sarake[] sarakkeet;
     
     public Pistetaulukko() {
         this.sarakkeet = new Sarake[15];
+        for (int i = 0; i < 15; i++) {
+            this.sarakkeet[i] = new Sarake();
+        }
     }
     
     public int valisumma() {

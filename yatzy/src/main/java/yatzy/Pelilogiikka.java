@@ -6,15 +6,18 @@ import java.util.Scanner;
 public class Pelilogiikka {
 
     private ArrayList<Pelaaja> pelaajat;
+    private Kasi kasi;
     private Scanner lukija = new Scanner(System.in);
 
     public Pelilogiikka() {
         this.pelaajat = new ArrayList<Pelaaja>();
-    }
+        this.kasi = luoKasi();
+    }                                                       //  Rivi 54, heitä nopat tehty. Seuraavaksi valitse uudelleenheitettävät
 
     public void aloitaPeli() {
         alustaPeli();
         pelaa();
+//        paataKierros();
     }
 
     private void alustaPeli() {
@@ -31,8 +34,29 @@ public class Pelilogiikka {
         }
     }
     
-    private void pelaaVuoro(Pelaaja pelaaja) {
+    private Kasi luoKasi() {
+        return new Kasi(luoNoppa(), 5);
+    }
+    
+    private Noppa luoNoppa() {
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        a.add(1);
+        a.add(2);
+        a.add(3);
+        a.add(4);
+        a.add(5);
+        a.add(6);
         
+        return new Noppa(a);
+    }
+    
+    private void pelaaVuoro(Pelaaja pelaaja) {
+        heitaNopat();
+        System.out.println(this.kasi.tulostaKasi());
+    }
+    
+    private void heitaNopat() {
+        this.kasi.heitaKaikkiNopat();
     }
     
     private boolean peliOnOhi(){

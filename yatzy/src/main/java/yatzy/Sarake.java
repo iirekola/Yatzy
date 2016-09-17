@@ -2,16 +2,10 @@
 package yatzy;
 
 public class Sarake {
-    private String nimi;
     private int pisteet;
     
-    public Sarake(String nimi) {
-        this.nimi = nimi;
+    public Sarake() {
         this.pisteet = -1;
-    }
-    
-    public String getNimi() {
-        return this.nimi;
     }
     
     public int getPisteet() {
