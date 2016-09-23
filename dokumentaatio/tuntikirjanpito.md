@@ -8,5 +8,5 @@ Päivä | Tunnit | Kuvaus
 16.9.2016 | 2h | Dokumentaatio
 17.9.2016| 6h | Pelilogiikan rakentamista
 22.9.2016 | 1h | Testejä
-23.9.2016 | 4h | Testejä ja testauksen teorian lukemista
+23.9.2016 | 6h | Testejä ja testauksen teorian lukemista, dokumentaation päivitys
 ... | ... | ...
