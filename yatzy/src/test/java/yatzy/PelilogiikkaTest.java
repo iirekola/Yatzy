@@ -77,11 +77,29 @@ public class PelilogiikkaTest {
     }
     
     @Test
-    public void nimeaPelaajatEiHyvaksyNegatiivista() {
+    public void nimeaPelaajaToimiiKunNollas() {
         Pelilogiikka l  = new Pelilogiikka();
         l.luoPelaajat(1);
         l.nimeaPelaaja(0, "Pasi");
         
         assertEquals(l.getPelaajat().get(0).getNimi(), "Pasi");
     } 
+    
+    @Test
+    public void nimeaPelaajaEiHyvaksyNegatiivista() {
+        Pelilogiikka l  = new Pelilogiikka();
+        l.luoPelaajat(1);
+        l.nimeaPelaaja(-1, "Pasi");
+        
+        assertEquals(l.getPelaajat().get(0).getNimi(), "1");
+    }
+    
+    @Test
+    public void nimeaPelaajaEiHyvaksyLiianSuurta() {
+        Pelilogiikka l  = new Pelilogiikka();
+        l.luoPelaajat(1);
+        l.nimeaPelaaja(1, "Pasi");
+        
+        assertEquals(l.getPelaajat().get(0).getNimi(), "1");
+    }
 }

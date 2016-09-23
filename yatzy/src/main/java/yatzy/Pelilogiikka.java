@@ -100,12 +100,12 @@ public class Pelilogiikka {
 
     public void luoPelaajat(int montako) {
         for (int i = 0; i < montako; i++) {
-            pelaajat.add(new Pelaaja(Integer.toString(i+1)));
+            pelaajat.add(new Pelaaja(Integer.toString(i + 1)));
         }
     }
 
     public void nimeaPelaaja(int monesko, String nimi) {
-        if (monesko < this.pelaajat.size() || monesko >= 0) {
+        if (monesko < this.pelaajat.size() && monesko >= 0) {
             this.pelaajat.get(monesko).setNimi(nimi);
         }
     }
