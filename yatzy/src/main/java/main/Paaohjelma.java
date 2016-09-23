@@ -27,7 +27,7 @@ public class Paaohjelma {
         
         Pelilogiikka yatzy = new Pelilogiikka();
         yatzy.aloitaPeli();
-        
+//        
     }
     
 }

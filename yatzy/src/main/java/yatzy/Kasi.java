@@ -22,15 +22,18 @@ public class Kasi {
         return this.nopat;
     }
     
-    public void heitaKaikkiNopat() {
-        for (int i = 0; i < nopat.length; i++) {
-            heitaNoppa(i);
+    public int[] heitaKaikkiNopat() {
+        int[] silmaluvut = new int[nopat.length];
+        for (int i = 0; i < nopat.length; i++) {            
+            silmaluvut[i] = heitaNoppa(i);
         }
+        return silmaluvut;
     }
     
-    public void heitaNoppa(int monesko) {
+    public int heitaNoppa(int monesko) {
         int uusiArvo = this.noppa.heitaNoppaa();
         this.nopat[monesko] = uusiArvo;
+        return uusiArvo;
     }
 
     public String tulostaKasi() {

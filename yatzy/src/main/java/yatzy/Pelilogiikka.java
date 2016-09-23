@@ -12,7 +12,7 @@ public class Pelilogiikka {
     public Pelilogiikka() {
         this.pelaajat = new ArrayList<Pelaaja>();
         this.kasi = luoKasi();
-    }                                                       //  Rivi 54, heitä nopat tehty. Seuraavaksi valitse uudelleenheitettävät
+    }                                                       //  Rivi 54, heitÃ¤ nopat tehty. Seuraavaksi valitse uudelleenheitettÃ¤v Ã¤t
 
     public void aloitaPeli() {
         alustaPeli();
@@ -86,14 +86,14 @@ public class Pelilogiikka {
             try {
                 montako = Integer.parseInt(lukija.nextLine());
             } catch (Exception e) {
-                System.out.println("Anna pelaajien määrä numerona");
+                System.out.println("Anna pelaajien mÃ¤Ã¤rÃ¤ numerona");
                 continue;
             }
 
             if (montako > 0) {
                 break;
             }
-            System.out.println("Pelaajia tulee olla yksi tai enemmän...");
+            System.out.println("Pelaajia tulee olla yksi tai enemmÃ¤n...");
         }
         return montako;
     }

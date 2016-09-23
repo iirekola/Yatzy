@@ -53,4 +53,45 @@ public class KasiTest {
         
         assertEquals(k.getNopat()[0], 6);
     }
+    
+    @Test
+    public void tulostaKasiToimiiKunYksi() {
+        ArrayList<Integer> arvot = new ArrayList<Integer>();
+        arvot.add(6);
+        Noppa n = new Noppa(arvot);
+        Kasi k = new Kasi(n, 1);
+        
+        assertEquals(k.tulostaKasi(), "6\n");
+    }
+    
+    @Test
+    public void tulostaKasiToimiiKunMonta() {
+        ArrayList<Integer> arvot = new ArrayList<Integer>();
+        arvot.add(6);
+        Noppa n = new Noppa(arvot);
+        Kasi k = new Kasi(n, 3);
+        
+        assertEquals(k.tulostaKasi(), "6\n6\n6\n");
+    }
+    
+    @Test
+    public void heitaNoppaToimii() {
+        ArrayList<Integer> arvot = new ArrayList<Integer>();
+        arvot.add(6);
+        Noppa n = new Noppa(arvot);
+        Kasi k = new Kasi(n, 3);
+        
+        assertEquals(k.heitaNoppa(0), k.getNopat()[0]);
+    }
+    
+    @Test
+    public void heitaKaikiNopatToimii() {
+        ArrayList<Integer> arvot = new ArrayList<Integer>();
+        arvot.add(6);
+        Noppa n = new Noppa(arvot);
+        Kasi k = new Kasi(n, 3);
+        
+        assertEquals(k.heitaKaikkiNopat(), k.getNopat());
+    }
+    
 }
