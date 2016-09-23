@@ -2,6 +2,7 @@
 package yatzy;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -91,7 +92,7 @@ public class KasiTest {
         Noppa n = new Noppa(arvot);
         Kasi k = new Kasi(n, 3);
         
-        assertEquals(k.heitaKaikkiNopat(), k.getNopat());
+        assertTrue(Arrays.equals(k.heitaKaikkiNopat(), k.getNopat()));
     }
     
 }

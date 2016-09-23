@@ -107,4 +107,12 @@ public class Pelilogiikka {
     private void nimeaPelaaja(int monesko, String nimi) {
         this.pelaajat.get(monesko).setNimi(nimi);
     }
+    
+    public ArrayList<Pelaaja> getPelaajat() {
+        return this.pelaajat;
+    }
+    
+    public Kasi getKasi() {
+        return this.kasi;
+    }
 }

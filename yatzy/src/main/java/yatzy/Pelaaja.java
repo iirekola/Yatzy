@@ -6,7 +6,7 @@ public class Pelaaja {
     private Pistetaulukko pisteet;
     
     public Pelaaja(String nimi) {
-        this.nimi = "";
+        this.nimi = nimi;
         this.pisteet = new Pistetaulukko();
     }
     
