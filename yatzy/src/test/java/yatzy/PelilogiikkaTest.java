@@ -44,7 +44,44 @@ public class PelilogiikkaTest {
         assertNotNull(l.getKasi());
     }
     
-//    @Test
-//    public void aloitaPeli()
-//    } 
+    @Test
+    public void luoPelaajatToimiiKunYksi() {
+        Pelilogiikka l  = new Pelilogiikka();
+        l.luoPelaajat(1);
+        
+        assertEquals(l.getPelaajat().size(), 1);
+    }
+    
+    @Test
+    public void luoPelaajatToimiiKunEiYhtaan() {
+        Pelilogiikka l  = new Pelilogiikka();
+        l.luoPelaajat(0);
+        
+        assertEquals(l.getPelaajat().size(), 0);
+    }
+    
+    @Test
+    public void luoPelaajatToimiiKunMonta() {
+        Pelilogiikka l  = new Pelilogiikka();
+        l.luoPelaajat(3);
+        
+        assertEquals(l.getPelaajat().size(), 3);
+    }
+    
+    @Test
+    public void luoPelaajatAsettaaNimeksiNumeron() {
+        Pelilogiikka l  = new Pelilogiikka();
+        l.luoPelaajat(1);
+        
+        assertEquals(l.getPelaajat().get(0).getNimi(), "1");
+    }
+    
+    @Test
+    public void nimeaPelaajatEiHyvaksyNegatiivista() {
+        Pelilogiikka l  = new Pelilogiikka();
+        l.luoPelaajat(1);
+        l.nimeaPelaaja(0, "Pasi");
+        
+        assertEquals(l.getPelaajat().get(0).getNimi(), "Pasi");
+    } 
 }

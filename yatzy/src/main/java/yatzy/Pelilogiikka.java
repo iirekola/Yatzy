@@ -20,25 +20,25 @@ public class Pelilogiikka {
 //        paataKierros();
     }
 
-    private void alustaPeli() {
+    public void alustaPeli() {
         int montakoPelaajaa = montakoPelaajaa();
         luoPelaajat(montakoPelaajaa);
         nimeaPelaajat();
     }
-    
-    private void pelaa() {
-        while(!peliOnOhi()) {
+
+    public void pelaa() {
+        while (!peliOnOhi()) {
             for (Pelaaja pelaaja : this.pelaajat) {
                 pelaaVuoro(pelaaja);
             }
         }
     }
-    
-    private Kasi luoKasi() {
+
+    public Kasi luoKasi() {
         return new Kasi(luoNoppa(), 5);
     }
-    
-    private Noppa luoNoppa() {
+
+    public Noppa luoNoppa() {
         ArrayList<Integer> a = new ArrayList<Integer>();
         a.add(1);
         a.add(2);
@@ -46,29 +46,29 @@ public class Pelilogiikka {
         a.add(4);
         a.add(5);
         a.add(6);
-        
+
         return new Noppa(a);
     }
-    
-    private void pelaaVuoro(Pelaaja pelaaja) {
+
+    public void pelaaVuoro(Pelaaja pelaaja) {
         heitaNopat();
         System.out.println(this.kasi.tulostaKasi());
     }
-    
-    private void heitaNopat() {
+
+    public void heitaNopat() {
         this.kasi.heitaKaikkiNopat();
     }
-    
-    private boolean peliOnOhi(){
+
+    public boolean peliOnOhi() {
         for (Pelaaja pelaaja : this.pelaajat) {
-            if (!pelaaja.getPisteet().onTaysi()){
+            if (!pelaaja.getPisteet().onTaysi()) {
                 return false;
             }
         }
         return true;
     }
 
-    private void nimeaPelaajat() {
+    public void nimeaPelaajat() {
         int i = 1;
         for (Pelaaja pelaaja : pelaajat) {
             System.out.println("Anna nimi pelaajalle " + i);
@@ -77,7 +77,7 @@ public class Pelilogiikka {
         }
     }
 
-    private int montakoPelaajaa() {
+    public int montakoPelaajaa() {
         int montako = 0;
         System.out.println("Tervetuloa pelaamaan Yatzya! Montako pelaajaa peliin osallistuu?");
 
@@ -98,20 +98,22 @@ public class Pelilogiikka {
         return montako;
     }
 
-    private void luoPelaajat(int montako) {
+    public void luoPelaajat(int montako) {
         for (int i = 0; i < montako; i++) {
-            pelaajat.add(new Pelaaja(Integer.toString(i)));
+            pelaajat.add(new Pelaaja(Integer.toString(i+1)));
         }
     }
 
-    private void nimeaPelaaja(int monesko, String nimi) {
-        this.pelaajat.get(monesko).setNimi(nimi);
+    public void nimeaPelaaja(int monesko, String nimi) {
+        if (monesko < this.pelaajat.size() || monesko >= 0) {
+            this.pelaajat.get(monesko).setNimi(nimi);
+        }
     }
-    
+
     public ArrayList<Pelaaja> getPelaajat() {
         return this.pelaajat;
     }
-    
+
     public Kasi getKasi() {
         return this.kasi;
     }
