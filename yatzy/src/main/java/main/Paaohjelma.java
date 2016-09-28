@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import javax.swing.SwingUtilities;
 import yatzy.Kasi;
 import yatzy.Noppa;
 import yatzy.Pelilogiikka;
@@ -24,9 +25,12 @@ public class Paaohjelma {
 //       System.out.println("Käsi:\n" + k.tulostaKasi());
 //       k.heitaKaikkiNopat();
 //       System.out.println("Käsi:\n" + k.tulostaKasi());
+//        
+//        Pelilogiikka yatzy = new Pelilogiikka();
+//        yatzy.aloitaPeli();
         
-        Pelilogiikka yatzy = new Pelilogiikka();
-        yatzy.aloitaPeli();
+        Kayttoliittyma k = new Kayttoliittyma();
+        SwingUtilities.invokeLater(k);
 //        
     }
     
