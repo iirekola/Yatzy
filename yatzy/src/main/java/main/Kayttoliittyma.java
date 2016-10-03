@@ -17,11 +17,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 import javax.swing.WindowConstants;
+import yatzy.Pelilogiikka;
 
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
+    private Pelilogiikka logiikka = new Pelilogiikka(this);
 
     public Kayttoliittyma() {
     }
@@ -38,6 +41,9 @@ public class Kayttoliittyma implements Runnable {
 
         frame.pack();
         frame.setVisible(true);
+        
+        
+//        logiikka.aloitaPeli();
     }
 
     private void luoKomponentit(Container container) {
@@ -78,22 +84,28 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private JPanel luoOhjeboksi() {
-        JPanel p = new JPanel();
+        JPanel p = new JPanel(new GridLayout(3,2));
         JLabel label = new JLabel("Tervetuloa pelaamaan Yatzya!");
         label.setFont(new Font("Serif", Font.PLAIN, 22));
         p.add(label);
-
+        
+        JButton heita = new JButton("Heitä nopat");
+        heita.setFont(new Font("Serif", Font.PLAIN, 22));
+        p.add(heita);
+        
+        p.add(new JLabel());
+                
         return p;
     }
 
     private JPanel luoNopat() {
         JPanel p = new JPanel(new GridLayout(1, 7));
         p.add(new JLabel());
-        p.add(new JButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JButton(new ImageIcon("src/pikkunoppa.png")));
+        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
+        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
+        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
+        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
+        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
         p.add(new JLabel());
 
         return p;
@@ -134,7 +146,7 @@ public class Kayttoliittyma implements Runnable {
             label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             label.setFont(new Font("Serif", Font.PLAIN, 16));
             p.add(label);
-            p.add(new JButton());
+            p.add(new JToggleButton());
         }
 
         return p;

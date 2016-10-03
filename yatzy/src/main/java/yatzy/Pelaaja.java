@@ -10,6 +10,11 @@ public class Pelaaja {
         this.pisteet = new Pistetaulukko();
     }
     
+    public Pelaaja() {
+        this.nimi = "nimetön";
+        this.pisteet = new Pistetaulukko();
+    }
+    
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
