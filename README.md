@@ -8,6 +8,6 @@ Ohjelmointiprojektin tavoitteena on tuottaa graafisen käyttöliittymän kautta 
 [aiheen kuvaus](dokumentaatio/aiheenKuvausJaRakenne.md),
 [tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
-Pit-raportti: https://htmlpreview.github.io/?https://github.com/iirekola/Yatzy/blob/master/dokumentaatio/pit/201609232208/index.html
+Pit-raportti: https://htmlpreview.github.io/?https://github.com/iirekola/Yatzy/blob/master/dokumentaatio/pit/201610072055/index.html
 
 Checkstyle-raportti: https://htmlpreview.github.io/?https://github.com/iirekola/Yatzy/blob/master/dokumentaatio/site/checkstyle.html
