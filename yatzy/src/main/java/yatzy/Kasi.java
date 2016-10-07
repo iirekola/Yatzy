@@ -3,37 +3,54 @@ package yatzy;
 import java.util.ArrayList;
 
 public class Kasi {
-    private int[] nopat;
-    private Noppa noppa;
+    private Noppa[] nopat;
 
-    public Kasi(Noppa noppa, int montakoNoppaa) {
-        this.noppa = noppa;
-        this.nopat = new int[montakoNoppaa];
-        alustaTaulukko(montakoNoppaa);
-    }
-
-    private void alustaTaulukko(int koko) {
-        for (int i = 0; i < koko; i++) {
-            this.nopat[i] = noppa.heitaNoppaa();
-        }
+    public Kasi() {
+        this.nopat = new Noppa[5];
+        luoNopat();
     }
     
-    public int[] getNopat() {
+    private void luoNopat() {
+        for (int i = 0; i < 5; i++) {
+            nopat[i] = new Noppa();
+        }
+    }
+
+    public Noppa[] getNopat() {
         return this.nopat;
     }
     
-    public int[] heitaKaikkiNopat() {
-        int[] silmaluvut = new int[nopat.length];
-        for (int i = 0; i < nopat.length; i++) {            
-            silmaluvut[i] = heitaNoppa(i);
-        }
-        return silmaluvut;
+    public void heitaNoppa(Noppa n) {
+        n.heitaNoppaa();
     }
     
-    public int heitaNoppa(int monesko) {
-        int uusiArvo = this.noppa.heitaNoppaa();
-        this.nopat[monesko] = uusiArvo;
-        return uusiArvo;
+    public void heitaValitutNopat() {
+        for (Noppa noppa : nopat) {
+            if (noppa.getValittu()) {
+                heitaNoppa(noppa);
+            }
+        }
+    }
+    
+    public void heitaKaikkiNopat() {
+        for (Noppa noppa : nopat) {
+            heitaNoppa(noppa);
+        }
+    }
+    
+    public void valitseNoppa(int i) {
+        this.nopat[i].setValittu(true);
+    }
+    
+    public void vapautaNoppa(int i) {
+        this.nopat[i].setValittu(false);
+    }
+     
+    public void vapautaKaikkiNopat() {
+        for (Noppa noppa : nopat) {
+            noppa.setValittu(false);
+            
+        }
     }
 
     public String tulostaKasi() {
@@ -43,4 +60,14 @@ public class Kasi {
         }
         return palautus;
     }
+    
+    public int[] getSilmaluvut() {
+        int[] arvot = new int[5];
+        for (int i = 0; i < 5; i++) {
+            arvot[i] = this.nopat[i].getArvo();
+        }
+        
+        return arvot;
+    }
+
 }

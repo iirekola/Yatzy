@@ -11,5 +11,6 @@ Päivä | Tunnit | Kuvaus
 23.9.2016 | 6h | Testejä ja testauksen teorian lukemista, dokumentaation päivitys
 28.9.2016 | 3h | GUI aiheeseen tutustumista ja käyttöliittymän aloitus. Näkymien hahmottelua paperille.
 04.10.2016 | 5h | GUI rakentamista, selvittelyä, pelilogiikan uudelleenarviointia.
-... | ... | ...
+06.10.2016 | 3h | GUI rakentamista
+07.10.2016 | 8h | GUI rakentamista, luokkien uudelleenmäärittelyä, testien uudelleenrakentamista
 ... | ... | ...

@@ -8,6 +8,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.PopupMenu;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -21,10 +23,15 @@ import javax.swing.JToggleButton;
 import javax.swing.WindowConstants;
 import yatzy.Pelilogiikka;
 
-public class Kayttoliittyma implements Runnable {
+public class Kayttoliittyma implements Runnable, ActionListener {
 
     private JFrame frame;
     private Pelilogiikka logiikka = new Pelilogiikka(this);
+
+    private JButton heittaja;
+    private ArrayList<JToggleButton> nopat = new ArrayList<>();
+    private ArrayList<JToggleButton> sarakkeet = new ArrayList<>();
+    private ArrayList<JLabel> pisteet = new ArrayList<>();
 
     public Kayttoliittyma() {
     }
@@ -33,7 +40,7 @@ public class Kayttoliittyma implements Runnable {
     public void run() {
         frame = new JFrame("Yatzy");
         frame.setPreferredSize(new Dimension(1000, 800));
-        frame.setIconImage(new ImageIcon("src/pikkunoppa.png").getImage());
+        frame.setIconImage(new ImageIcon("src/noppa5.png").getImage());
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,9 +48,6 @@ public class Kayttoliittyma implements Runnable {
 
         frame.pack();
         frame.setVisible(true);
-        
-        
-//        logiikka.aloitaPeli();
     }
 
     private void luoKomponentit(Container container) {
@@ -84,28 +88,33 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private JPanel luoOhjeboksi() {
-        JPanel p = new JPanel(new GridLayout(3,2));
+        JPanel p = new JPanel(new GridLayout(3, 2));
         JLabel label = new JLabel("Tervetuloa pelaamaan Yatzya!");
         label.setFont(new Font("Serif", Font.PLAIN, 22));
         p.add(label);
-        
-        JButton heita = new JButton("Heitä nopat");
-        heita.setFont(new Font("Serif", Font.PLAIN, 22));
-        p.add(heita);
-        
+
+        this.heittaja = new JButton("Heitä nopat");
+        heittaja.setFont(new Font("Serif", Font.PLAIN, 22));
+        heittaja.addActionListener(this);
+        p.add(heittaja);
+
         p.add(new JLabel());
-                
+
         return p;
     }
 
     private JPanel luoNopat() {
         JPanel p = new JPanel(new GridLayout(1, 7));
+
         p.add(new JLabel());
-        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
-        p.add(new JToggleButton(new ImageIcon("src/pikkunoppa.png")));
+
+        for (int i = 0; i < 5; i++) {
+            JToggleButton noppa = new JToggleButton(new ImageIcon("src/noppa5.png"));
+            noppa.addActionListener(this);
+            p.add(noppa);
+            this.nopat.add(noppa);
+        }
+
         p.add(new JLabel());
 
         return p;
@@ -114,42 +123,165 @@ public class Kayttoliittyma implements Runnable {
     private JPanel luoTulostaulukko() {
         JPanel p = new JPanel(new GridLayout(18, 2));
 
-        ArrayList<JLabel> otsikot = new ArrayList<>();
-
         JLabel yatzy = new JLabel("YATZY");
         yatzy.setFont(new Font("Serif", Font.BOLD, 16));
         p.add(yatzy);
-        
-        JLabel pelaaja  = new JLabel("Pisteet");
+
+        JLabel pelaaja = new JLabel("Pisteet");
         pelaaja.setFont(new Font("Serif", Font.BOLD, 16));
         p.add(pelaaja);
-        
-        otsikot.add(new JLabel("Ykköset"));
-        otsikot.add(new JLabel("Kakkoset"));
-        otsikot.add(new JLabel("Kolmoset"));
-        otsikot.add(new JLabel("Neloset"));
-        otsikot.add(new JLabel("Viitoset"));
-        otsikot.add(new JLabel("Kuutoset"));
-        otsikot.add(new JLabel("VÄLISUMMA"));
-        otsikot.add(new JLabel("Pari"));
-        otsikot.add(new JLabel("Kaksi paria"));
-        otsikot.add(new JLabel("Kolme samaa"));
-        otsikot.add(new JLabel("Neljä samaa"));
-        otsikot.add(new JLabel("Pikku suora"));
-        otsikot.add(new JLabel("Iso suora"));
-        otsikot.add(new JLabel("Täyskäsi"));
-        otsikot.add(new JLabel("Sattuma"));
-        otsikot.add(new JLabel("Yatzy"));
-        otsikot.add(new JLabel("SUMMA"));
 
-        for (JLabel label : otsikot) {
-            label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            label.setFont(new Font("Serif", Font.PLAIN, 16));
-            p.add(label);
-            p.add(new JToggleButton());
+        this.sarakkeet.add(new JToggleButton("Ykköset"));
+        this.sarakkeet.add(new JToggleButton("Kakkoset"));
+        this.sarakkeet.add(new JToggleButton("Kolmoset"));
+        this.sarakkeet.add(new JToggleButton("Neloset"));
+        this.sarakkeet.add(new JToggleButton("Viitoset"));
+        this.sarakkeet.add(new JToggleButton("Kuutoset"));
+        this.sarakkeet.add(new JToggleButton("VÄLISUMMA"));
+        this.sarakkeet.add(new JToggleButton("Pari"));
+        this.sarakkeet.add(new JToggleButton("Kaksi paria"));
+        this.sarakkeet.add(new JToggleButton("Kolme samaa"));
+        this.sarakkeet.add(new JToggleButton("Neljä samaa"));
+        this.sarakkeet.add(new JToggleButton("Pikku suora"));
+        this.sarakkeet.add(new JToggleButton("Iso suora"));
+        this.sarakkeet.add(new JToggleButton("Täyskäsi"));
+        this.sarakkeet.add(new JToggleButton("Sattuma"));
+        this.sarakkeet.add(new JToggleButton("Yatzy"));
+        this.sarakkeet.add(new JToggleButton("SUMMA"));
+
+        for (JToggleButton nappi : sarakkeet) {
+            nappi.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            nappi.setFont(new Font("Serif", Font.PLAIN, 16));
+            nappi.addActionListener(this);
+            nappi.setEnabled(false);
+
+            JLabel piste = new JLabel();
+            piste.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            piste.setFont(new Font("Serif", Font.PLAIN, 16));
+            this.pisteet.add(piste);
+
+            p.add(nappi);
+            p.add(piste);
         }
+        
 
         return p;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            JToggleButton button = (JToggleButton) e.getSource();
+
+            if (this.nopat.contains(button)) {
+                reagoiNoppaan(button);
+            }
+            
+            if (this.sarakkeet.contains(button)) {
+                reagoiSarakkeeseen(button);
+            }
+
+        } catch (Exception exptn) {
+            JButton button = (JButton) e.getSource();
+
+            reagoiHeittonappiin(button);
+        }
+    }
+
+    public void reagoiNoppaan(JToggleButton button) {
+        for (int i = 0; i < 5; i++) {
+            if (this.nopat.get(i).equals(button)) {
+                this.logiikka.valitseNoppa(i);
+            }
+        }
+    }
+    
+    public void reagoiSarakkeeseen(JToggleButton button) {
+        if (button.getText().equals("VÄLISUMMA") || button.getText().equals("SUMMA")) {
+            return;
+        }
+        
+        JLabel sarake = selvitaSarake(button);
+        
+        int pisteet = this.logiikka.laskeSarakkeenPisteet(button.getText());
+        sarake.setText(String.valueOf(pisteet));
+        sarake.setEnabled(false);
+        
+        paivitaSummaJaValisumma();
+        lukitseTaulukko();
+        this.heittaja.setText("Heitä nopat");
+    }
+    
+    public JLabel selvitaSarake(JToggleButton button) {
+        for (int i = 0; i < this.sarakkeet.size(); i++) {
+            if (this.sarakkeet.get(i).equals(button)) {
+                return this.pisteet.get(i);
+            }
+        }
+                
+        return null;
+    }
+    
+    public void paivitaSummaJaValisumma() {
+        int valisumma = 0;
+        int summa = 0;
+        for (JLabel piste : this.pisteet) {
+            if (!piste.getText().isEmpty()) {
+                
+            }
+        }
+    }
+
+    public void reagoiHeittonappiin(JButton button) {
+        if (button.getText() == "Heitä nopat") {
+            heitaKaikkiNopat();
+            paivitaNopat();
+            button.setText("Heitä valitsemani nopat uudestaan (1. kerta)");
+        } else if (button.getText() == "Heitä valitsemani nopat uudestaan (1. kerta)") {
+            heitaValitutNopat();
+            paivitaNopat();
+            button.setText("Heitä valitsemani nopat uudestaan (2. kerta)");
+        } else if (button.getText() == "Heitä valitsemani nopat uudestaan (2. kerta)") {
+            heitaValitutNopat();
+            paivitaNopat();
+            button.setText("Kirjaa tulos");
+            vapautaTaulukko();
+        }
+    }
+
+    public void heitaValitutNopat() {
+        this.logiikka.heitaValitutNopat();
+    }
+
+    public void heitaKaikkiNopat() {
+        this.logiikka.heitaKaikkiNopat();
+    }
+
+    public void paivitaNopat() {
+        int[] silmaluvut = this.logiikka.getSilmaluvut();
+        for (int i = 0; i < 5; i++) {
+            int silmaluku = silmaluvut[i];
+            String kuvanOsoite = "src/noppa" + silmaluku + ".png";
+            this.nopat.get(i).setIcon(new ImageIcon(kuvanOsoite));
+        }
+
+        for (JToggleButton noppa : nopat) {
+            if (noppa.isSelected()) {
+                noppa.setSelected(false);
+            }
+        }
+    }
+    
+    public void vapautaTaulukko() {
+        for (JToggleButton nappi : sarakkeet) {
+            nappi.setEnabled(true);
+        }
+    }
+
+    public void lukitseTaulukko() {
+        for (JToggleButton nappi : sarakkeet) {
+            nappi.setEnabled(false);
+        }
     }
 
 }

@@ -2,27 +2,32 @@ package yatzy;
 
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JToggleButton;
 
 /**
  * Noppaa simuloiva luokka
  */
 public class Noppa {
 
-    private ArrayList<Integer> arvot;
     private int arvo;
     private Random arpoja = new Random();
+    private boolean valittu;
 
-    public Noppa(ArrayList<Integer> arvojoukko) {
-        this.arvot = arvojoukko;
+    public Noppa() {
         this.arvo = uusiArvo();
+        this.valittu = false;
     }
 
     public int getArvo() {
         return this.arvo;
     }
-
-    public ArrayList<Integer> getArvot() {
-        return this.arvot;
+    
+    public void setValittu(boolean b) {
+        this.valittu = b;
+    }
+    
+    public boolean getValittu() {
+        return this.valittu;
     }
 
     public int heitaNoppaa() {
@@ -31,7 +36,12 @@ public class Noppa {
     }
 
     public int uusiArvo() {
-        return arvot.get(arpoja.nextInt(arvot.size()));
+        return arpoja.nextInt(6) +1;
+    }
+    
+    @Override
+    public String toString() {
+        return "" + this.arvo;
     }
 
 }
