@@ -9,10 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author iirekola
- */
+
 public class NoppaTest {
     
     public NoppaTest() {
@@ -40,88 +37,42 @@ public class NoppaTest {
     // @Test
     // public void hello() {}
     
+    
     @Test
-    public void konstrukstoriAsettaaArvotOikeinKunYksiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
+    public void konstruktoriAsettaaAlkuarvon() {
+        Noppa n = new Noppa();
         
-        assertEquals(n.getArvot(), arvot);
+        assertNotNull(n.getArvo());
     }
     
     @Test
-    public void konstrukstoriAsettaaArvotOikeinKunUseampiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        arvot.add(1);
-        arvot.add(11);
-        Noppa n = new Noppa(arvot);
+    public void konstruktoriAsettaaValitunFalse() {
+        Noppa n = new Noppa();
         
-        assertEquals(n.getArvot(), arvot);
+        assertFalse(n.getValittu());
     }
     
     @Test
-    public void konstrukstoriAsettaaAlkuarvonKunYksiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
+    public void heitaNoppaaAntaaHyvaksyttavanArvon() {
+        Noppa n = new Noppa();
+        int uusi = n.heitaNoppaa();
         
-        assertEquals(n.getArvo(), 6);
+        assertTrue(1 <= uusi && 6 >= uusi);
     }
     
     @Test
-    public void konstrukstoriAsettaaAlkuarvonKunUseampiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        arvot.add(1);
-        arvot.add(11);
-        Noppa n = new Noppa(arvot);
+    public void setValittuAsettaaTrue() {
+        Noppa n = new Noppa();
+        n.setValittu(true);
         
-        assertTrue(arvot.contains(n.getArvo()));
+        assertTrue(n.getValittu());
     }
     
     @Test
-    public void uusiArvoAntaaHyvaksyttavanArvonKunYksiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        int uusi = n.uusiArvo();
+    public void setValittuAsettaaFalse() {
+        Noppa n = new Noppa();
+        n.setValittu(false);
         
-        assertEquals(uusi, 6);
+        assertFalse(n.getValittu());
     }
-    
-    @Test
-    public void uusiArvoAntaaHyvaksyttavanArvonKunUseampiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        arvot.add(1);
-        arvot.add(11);
-        Noppa n = new Noppa(arvot);
-        int uusi = n.uusiArvo();
-        
-        assertTrue(arvot.contains(uusi));
-    }
-    
-    @Test
-    public void heitaNoppaaAntaaHyvaksyttavanArvonKunYksiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        n.heitaNoppaa();
-        
-        assertEquals(n.getArvo(), 6);
-    }
-    
-    @Test
-    public void heitaNoppaaAntaaHyvaksyttavanArvonKunUseampiArvo() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        arvot.add(1);
-        arvot.add(11);
-        Noppa n = new Noppa(arvot);
-        n.heitaNoppaa();
-        
-        assertTrue(arvot.contains(n.getArvo()));
-    }   
-    
 }

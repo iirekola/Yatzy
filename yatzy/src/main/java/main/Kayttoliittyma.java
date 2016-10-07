@@ -26,7 +26,7 @@ import yatzy.Pelilogiikka;
 public class Kayttoliittyma implements Runnable, ActionListener {
 
     private JFrame frame;
-    private Pelilogiikka logiikka = new Pelilogiikka(this);
+    private Pelilogiikka logiikka = new Pelilogiikka();
 
     private JButton heittaja;
     private ArrayList<JToggleButton> nopat = new ArrayList<>();
@@ -163,7 +163,6 @@ public class Kayttoliittyma implements Runnable, ActionListener {
             p.add(nappi);
             p.add(piste);
         }
-        
 
         return p;
     }
@@ -176,7 +175,7 @@ public class Kayttoliittyma implements Runnable, ActionListener {
             if (this.nopat.contains(button)) {
                 reagoiNoppaan(button);
             }
-            
+
             if (this.sarakkeet.contains(button)) {
                 reagoiSarakkeeseen(button);
             }
@@ -195,41 +194,35 @@ public class Kayttoliittyma implements Runnable, ActionListener {
             }
         }
     }
-    
+
     public void reagoiSarakkeeseen(JToggleButton button) {
         if (button.getText().equals("VÄLISUMMA") || button.getText().equals("SUMMA")) {
             return;
         }
-        
+
         JLabel sarake = selvitaSarake(button);
-        
+
         int pisteet = this.logiikka.laskeSarakkeenPisteet(button.getText());
         sarake.setText(String.valueOf(pisteet));
         sarake.setEnabled(false);
-        
+
         paivitaSummaJaValisumma();
         lukitseTaulukko();
         this.heittaja.setText("Heitä nopat");
     }
-    
+
     public JLabel selvitaSarake(JToggleButton button) {
         for (int i = 0; i < this.sarakkeet.size(); i++) {
             if (this.sarakkeet.get(i).equals(button)) {
                 return this.pisteet.get(i);
             }
         }
-                
+
         return null;
     }
-    
+
     public void paivitaSummaJaValisumma() {
-        int valisumma = 0;
-        int summa = 0;
-        for (JLabel piste : this.pisteet) {
-            if (!piste.getText().isEmpty()) {
-                
-            }
-        }
+        
     }
 
     public void reagoiHeittonappiin(JButton button) {
@@ -271,7 +264,7 @@ public class Kayttoliittyma implements Runnable, ActionListener {
             }
         }
     }
-    
+
     public void vapautaTaulukko() {
         for (JToggleButton nappi : sarakkeet) {
             nappi.setEnabled(true);

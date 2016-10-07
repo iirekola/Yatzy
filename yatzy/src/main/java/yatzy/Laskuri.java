@@ -8,7 +8,7 @@ public class Laskuri {
     }
     
     public int laskeSarakkeenPisteet(String sarake) {
-        return 1;
+        return -1;
     }
     
 }

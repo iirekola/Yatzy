@@ -35,64 +35,86 @@ public class KasiTest {
 
     @Test
     public void luotuTaulukkoOikeanKokoinen() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        arvot.add(1);
-        arvot.add(11);
-        Noppa n = new Noppa(arvot);
-        Kasi k = new Kasi(n, 5);
+        Kasi k = new Kasi();
         
         assertEquals(k.getNopat().length, 5);
     }
     
     @Test
     public void luotuTaulukkoTaytetty() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        Kasi k = new Kasi(n, 1);
+        Kasi k = new Kasi();
         
-        assertEquals(k.getNopat()[0], 6);
+        assertNotNull(k.getNopat()[4]);
     }
     
     @Test
-    public void tulostaKasiToimiiKunYksi() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        Kasi k = new Kasi(n, 1);
+    public void heitaValitutNopatToimii() {
+        Kasi k = new Kasi();
+        int arvo2 = k.getNopat()[2].getArvo();
+        k.valitseNoppa(3);
+        k.heitaValitutNopat();
         
-        assertEquals(k.tulostaKasi(), "6\n");
+        assertEquals(k.getNopat()[2].getArvo(), arvo2);
     }
     
     @Test
-    public void tulostaKasiToimiiKunMonta() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        Kasi k = new Kasi(n, 3);
+    public void valitseNoppaToimii() {
+        Kasi k = new Kasi();
+        k.valitseNoppa(2);
+        boolean toimii = true;
         
-        assertEquals(k.tulostaKasi(), "6\n6\n6\n");
+        for (Noppa noppa : k.getNopat()) {
+            if (noppa == k.getNopat()[2]) {
+                toimii = noppa.getValittu();
+            }
+            else {
+                if (noppa.getValittu()) {
+                    toimii = false;
+                }
+            }
+        }
+        
+        assertTrue(toimii);
     }
     
     @Test
-    public void heitaNoppaToimii() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        Kasi k = new Kasi(n, 3);
+    public void vapautaNoppaToimii() {
+        Kasi k = new Kasi();
+        k.valitseNoppa(2);
+        k.vapautaNoppa(2);
         
-        assertEquals(k.heitaNoppa(0), k.getNopat()[0]);
+        assertFalse(k.getNopat()[2].getValittu());
     }
     
     @Test
-    public void heitaKaikiNopatToimii() {
-        ArrayList<Integer> arvot = new ArrayList<Integer>();
-        arvot.add(6);
-        Noppa n = new Noppa(arvot);
-        Kasi k = new Kasi(n, 3);
+    public void vapautaKaikkiNopatToimii() {
+        Kasi k = new Kasi();
+        k.valitseNoppa(2);
+        k.vapautaKaikkiNopat();
         
-        assertTrue(Arrays.equals(k.heitaKaikkiNopat(), k.getNopat()));
+        assertFalse(k.getNopat()[2].getValittu());
     }
     
+    @Test
+    public void getSilmaluvutPalauttaaTaulukon() {
+        Kasi k = new Kasi();
+        int[] t = k.getSilmaluvut();
+        
+        assertFalse(t == null);
+    }
+    
+    @Test
+    public void getSilmaluvutKaikkiSilmaluvutOikealtaValilta() {
+        Kasi k = new Kasi();
+        int[] t = k.getSilmaluvut();
+        boolean toimii = true;
+        
+        for (int i : t) {
+            if (i < 1 || i > 6) {
+                toimii = false;
+            }
+        }
+        
+        assertTrue(toimii);
+    }
 }

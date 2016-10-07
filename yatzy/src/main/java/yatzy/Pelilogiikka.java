@@ -6,15 +6,11 @@ import main.Kayttoliittyma;
 
 public class Pelilogiikka {
 
-    private Pelaaja pelaaja;
     private Kasi kasi;
-    private Kayttoliittyma k;
     private Laskuri laskuri;
 
-    public Pelilogiikka(Kayttoliittyma k) {
-        this.pelaaja = new Pelaaja();
+    public Pelilogiikka() {
         this.kasi = new Kasi();
-        this.k = k;
         this.laskuri = new Laskuri();
     }
 
@@ -38,5 +34,13 @@ public class Pelilogiikka {
     
     public int laskeSarakkeenPisteet(String sarake) {
         return this.laskuri.laskeSarakkeenPisteet(sarake);
+    }
+    
+    public Kasi getKasi() {
+        return this.kasi;
+    }
+    
+    public Laskuri getLaskuri() {
+        return this.laskuri;
     }
 }

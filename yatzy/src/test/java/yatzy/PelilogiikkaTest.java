@@ -1,6 +1,7 @@
 
 package yatzy;
 
+import main.Kayttoliittyma;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -31,13 +32,6 @@ public class PelilogiikkaTest {
     }
     
     @Test
-    public void konstruktoriLuoPelaajalistan() {
-        Pelilogiikka l = new Pelilogiikka();
-        
-        assertNotNull(l.getPelaajat());
-    }
-
-    @Test
     public void konstruktoriLuoKaden() {
         Pelilogiikka l = new Pelilogiikka();
         
@@ -45,61 +39,82 @@ public class PelilogiikkaTest {
     }
     
     @Test
-    public void luoPelaajatToimiiKunYksi() {
-        Pelilogiikka l  = new Pelilogiikka();
-        l.luoPelaajat(1);
+    public void konstruktoriLuoLaskurin() {
+        Pelilogiikka l = new Pelilogiikka();
         
-        assertEquals(l.getPelaajat().size(), 1);
+        assertNotNull(l.getLaskuri());
     }
     
     @Test
-    public void luoPelaajatToimiiKunEiYhtaan() {
-        Pelilogiikka l  = new Pelilogiikka();
-        l.luoPelaajat(0);
+    public void getSilmaluvutToimii() {
+        Pelilogiikka l = new Pelilogiikka();
+        int[] testi = l.getSilmaluvut();
+        boolean toimii = true;
         
-        assertEquals(l.getPelaajat().size(), 0);
+        for (int i = 0; i < 5; i++) {
+            if (testi[i] != l.getKasi().getNopat()[i].getArvo()) {
+                toimii = false;
+            }
+        }
+        
+        assertTrue(toimii);
     }
     
     @Test
-    public void luoPelaajatToimiiKunMonta() {
-        Pelilogiikka l  = new Pelilogiikka();
-        l.luoPelaajat(3);
+    public void heitaKaikkiNopatVapauttaaKaikkiNopat() {
+        Pelilogiikka l = new Pelilogiikka();
+        l.heitaKaikkiNopat();
+        boolean toimii = true;
         
-        assertEquals(l.getPelaajat().size(), 3);
+        for(Noppa noppa : l.getKasi().getNopat()) {
+            if (noppa.getValittu()) {
+                toimii = false;
+            }
+        }
+        
+        assertTrue(toimii);
     }
     
     @Test
-    public void luoPelaajatAsettaaNimeksiNumeron() {
-        Pelilogiikka l  = new Pelilogiikka();
-        l.luoPelaajat(1);
+    public void heitaValitutNopatVapauttaaKaikkiNopat() {
+        Pelilogiikka l = new Pelilogiikka();
+        l.heitaValitutNopat();
+        boolean toimii = true;
         
-        assertEquals(l.getPelaajat().get(0).getNimi(), "1");
+        for(Noppa noppa : l.getKasi().getNopat()) {
+            if (noppa.getValittu()) {
+                toimii = false;
+            }
+        }
+        
+        assertTrue(toimii);
     }
     
     @Test
-    public void nimeaPelaajaToimiiKunNollas() {
-        Pelilogiikka l  = new Pelilogiikka();
-        l.luoPelaajat(1);
-        l.nimeaPelaaja(0, "Pasi");
+    public void heitaValitutNopatEiHeitäMuitaNoppia() {
+        Pelilogiikka l = new Pelilogiikka();
+        int[] ennen = l.getSilmaluvut();
         
-        assertEquals(l.getPelaajat().get(0).getNimi(), "Pasi");
-    } 
-    
-    @Test
-    public void nimeaPelaajaEiHyvaksyNegatiivista() {
-        Pelilogiikka l  = new Pelilogiikka();
-        l.luoPelaajat(1);
-        l.nimeaPelaaja(-1, "Pasi");
+        l.valitseNoppa(2);
+        l.heitaValitutNopat();
+        int[] jalkeen = l.getSilmaluvut();
+        boolean toimii = true;
         
-        assertEquals(l.getPelaajat().get(0).getNimi(), "1");
+        for(int i = 0; i < 5; i++) {
+            if (i != 2) {
+                if (ennen[i] != jalkeen[i]){
+                    toimii = false;
+                }
+            }
+        }
+        assertTrue(toimii);
     }
     
     @Test
-    public void nimeaPelaajaEiHyvaksyLiianSuurta() {
-        Pelilogiikka l  = new Pelilogiikka();
-        l.luoPelaajat(1);
-        l.nimeaPelaaja(1, "Pasi");
+    public void valitseNoppaToimii() {
+        Pelilogiikka l = new Pelilogiikka();
+        l.valitseNoppa(2);
         
-        assertEquals(l.getPelaajat().get(0).getNimi(), "1");
+        assertTrue(l.getKasi().getNopat()[2].getValittu());
     }
 }
