@@ -1,7 +1,7 @@
 package yatzy;
 
 /**
- * Käsi koostuu viidestä nopasta ja tarjoaa metodit noppien käsittelyyn.
+ * Käsi koostuu viidestä nopasta ja tarjoaa metodit noppien käsittelyyn. Käsi tallentaa noppien kulloisenkin tilan.
  */
 import java.util.ArrayList;
 

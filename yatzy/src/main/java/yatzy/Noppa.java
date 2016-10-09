@@ -33,23 +33,38 @@ public class Noppa {
     }
 
     /**
-     * setValittu(boolean b )
+     * setValittu(boolean b) asettaa nopan valituksi tai ei-valituksi. True valitsee nopan. False vapauttaa nopan.
      * 
-     * @param b 
+     * @param b true = valitse noppa, false = vapauta noppa
      */
     public void setValittu(boolean b) {
         this.valittu = b;
     }
 
+    /**
+     * getValittu() kertoo onko noppa valittuna vai ei. True on valittu, False on ei-valittu.
+     * 
+     * @return onko noppa valittu
+     */
     public boolean getValittu() {
         return this.valittu;
     }
 
+    /**
+     * heitaNoppaa() arpoo nopalle uuden arvon väliltä 1-6 ja tallentaa sen.
+     * 
+     * @return nopan uusi arvo
+     */
     public int heitaNoppaa() {
         this.arvo = arpoja.nextInt(6) + 1;
         return this.arvo;
     }
 
+    /**
+     * toString() palauttaa nopan silmäluvun. Esim arvolla 3, toString() palauttaa "3".
+     * 
+     * @return nopan silmäluku
+     */
     @Override
     public String toString() {
         return "" + this.arvo;
