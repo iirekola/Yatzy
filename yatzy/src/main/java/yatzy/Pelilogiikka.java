@@ -11,7 +11,7 @@ public class Pelilogiikka {
 
     public Pelilogiikka() {
         this.kasi = new Kasi();
-        this.laskuri = new Laskuri();
+        this.laskuri = new Laskuri(this.kasi);
     }
 
     public void heitaKaikkiNopat() {
@@ -33,7 +33,7 @@ public class Pelilogiikka {
     }
     
     public int laskeSarakkeenPisteet(String sarake) {
-        return this.laskuri.laskeSarakkeenPisteet(sarake);
+        return this.laskuri.laskeSarakkeenPisteet(sarake, this.kasi);
     }
     
     public Kasi getKasi() {
