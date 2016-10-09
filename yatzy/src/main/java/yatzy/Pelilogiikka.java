@@ -82,7 +82,7 @@ public class Pelilogiikka {
     }
     
     /**
-     * palauttaa laskurin
+     * palauttaa laskurin.
      * 
      * @return laskuri
      */
