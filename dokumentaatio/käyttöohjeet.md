@@ -6,7 +6,8 @@ Tallenna tulos haluamaasi sarakkeeseen klikkaamalla kyseisen sarakkeen nimeä. E
 
 ###Pisteytys:###
 
-SARAKE | KUVAUS | ESIMERKKI
+Sarake | Kuvaus | Esimerkki
+------ | ------ | ---------
 Ykköset | | 1+3+1+1+5 = 1+1+1 = 3 pistettä
 Kakkoset | | 2+4+2+3+1 = 2+2 = 4 pistettä
 Kolmoset | | 3+3+3+2+3 = 3+3+3+3 = 12 pistettä
