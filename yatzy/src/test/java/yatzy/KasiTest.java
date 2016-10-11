@@ -51,7 +51,7 @@ public class KasiTest {
     public void heitaValitutNopatToimii() {
         Kasi k = new Kasi();
         int arvo2 = k.getNopat()[2].getArvo();
-        k.valitseNoppa(3);
+        k.valitseNoppa(3, true);
         k.heitaValitutNopat();
         
         assertEquals(k.getNopat()[2].getArvo(), arvo2);
@@ -60,7 +60,7 @@ public class KasiTest {
     @Test
     public void valitseNoppaToimii() {
         Kasi k = new Kasi();
-        k.valitseNoppa(2);
+        k.valitseNoppa(2, true);
         boolean toimii = true;
         
         for (Noppa noppa : k.getNopat()) {
@@ -80,8 +80,8 @@ public class KasiTest {
     @Test
     public void vapautaNoppaToimii() {
         Kasi k = new Kasi();
-        k.valitseNoppa(2);
-        k.vapautaNoppa(2);
+        k.valitseNoppa(2, true);
+        k.valitseNoppa(2, false);
         
         assertFalse(k.getNopat()[2].getValittu());
     }
@@ -89,7 +89,7 @@ public class KasiTest {
     @Test
     public void vapautaKaikkiNopatToimii() {
         Kasi k = new Kasi();
-        k.valitseNoppa(2);
+        k.valitseNoppa(2, true);
         k.vapautaKaikkiNopat();
         
         assertFalse(k.getNopat()[2].getValittu());
