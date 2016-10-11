@@ -53,13 +53,19 @@ public class Pelilogiikka {
     }
     
     /**
-     * valitseNoppa(int monesko) asettaa käden indeksissä monesko sijaitsevan nopan valituksi.
+     * valitseNoppa(int monesko) tarkistaa onko annetussa indeksissö oleva noppa valittu vai ei.
+     * Jos noppa on valittu, se vapautetaan. Jos noppa on vapaa, se valitaan.
      * 
      * @param monesko valittavan nopan indeksi taulukossa
      * @see yatzy.Kasi#valitseNoppa(int) 
+     * @see yatzy.Kasi#onkoValittu(int) 
      */
     public void valitseNoppa(int monesko) {
-        this.kasi.valitseNoppa(monesko);
+        if (this.kasi.onkoValittu(monesko)) {
+            this.kasi.valitseNoppa(monesko, false);
+        } else {
+            this.kasi.valitseNoppa(monesko, true);
+        }
     }
     
     /**
@@ -68,8 +74,16 @@ public class Pelilogiikka {
      * @param sarake sarakkeen nimi
      * @return pistemäärä
      */
-    public int laskeSarakkeenPisteet(String sarake) {
+    public int laskeSarakkeenPisteet(int sarake) {
         return this.laskuri.laskeSarakkeenPisteet(sarake);
+    }
+    
+    public int getSumma() {
+        return this.laskuri.getSumma();
+    }
+    
+    public int getValisumma() {
+        return this.laskuri.getValisumma();
     }
     
     /**

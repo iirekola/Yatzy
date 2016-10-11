@@ -23,6 +23,13 @@ import javax.swing.JToggleButton;
 import javax.swing.WindowConstants;
 import yatzy.Pelilogiikka;
 
+/**
+ * Kayttoliittyma hoitaa graafisen käyttöliittymön komponenttien luomisen ja
+ * delegoi niihin liittyvät metodikutsut Pelilogiikalle.
+ * 
+ * @see yatzy.Pelilogiikka
+ * @author iiris
+ */
 public class Kayttoliittyma implements Runnable, ActionListener {
 
     private JFrame frame;
@@ -33,9 +40,17 @@ public class Kayttoliittyma implements Runnable, ActionListener {
     private ArrayList<JToggleButton> sarakkeet = new ArrayList<>();
     private ArrayList<JLabel> pisteet = new ArrayList<>();
 
+    /**
+     * Konstruktori ei tee mitään erityistä.
+     */
     public Kayttoliittyma() {
     }
 
+    /**
+     * Metodi luo graafisen käyttöliittymän ja sen komponentit.
+     * 
+     * @see main.Kayttoliittyma#luoKomponentit(java.awt.Container) 
+     */
     @Override
     public void run() {
         frame = new JFrame("Yatzy");
@@ -50,6 +65,11 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Metodi asettaa layoutiksi gridBagLayoutin, johon tulee kolme JPanel komponenttia vertikaalisesti.
+     * 
+     * @param container 
+     */
     private void luoKomponentit(Container container) {
         container.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -69,12 +89,6 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         c.gridheight = 1;
         container.add(nopat, c);
 
-//        JPanel nopat = luoNopat();
-////        c.fill = GridBagConstraints.BOTH;
-//        c.gridx = 0;
-//        c.gridy = 1;
-//        c.gridheight = 1;     
-//        container.add(nopat, c);
         JPanel taulukko = luoTulostaulukko();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
@@ -87,13 +101,18 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         return frame;
     }
 
+    /**
+     * Metodi luo ensimmäisen kolmesta JPanel:sta. Ohjeboksi sisältää ohjeteksin ja napin noppien heittämiseen.
+     * 
+     * @return JPanel ohjeboksi
+     */
     private JPanel luoOhjeboksi() {
         JPanel p = new JPanel(new GridLayout(3, 2));
         JLabel label = new JLabel("Tervetuloa pelaamaan Yatzya!");
         label.setFont(new Font("Serif", Font.PLAIN, 22));
         p.add(label);
 
-        this.heittaja = new JButton("Heitä nopat");
+        this.heittaja = new JButton("Aloita peli");
         heittaja.setFont(new Font("Serif", Font.PLAIN, 22));
         heittaja.addActionListener(this);
         p.add(heittaja);
@@ -103,6 +122,11 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         return p;
     }
 
+    /**
+     * Metodi luo toisen kolmelta JPanel:sta. luoNopat luo jokaiselle nopalle napin, jossa on nopan kuva.
+     * 
+     * @return JPanel nopat
+     */
     private JPanel luoNopat() {
         JPanel p = new JPanel(new GridLayout(1, 7));
 
@@ -120,6 +144,11 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         return p;
     }
 
+    /**
+     * Metodi luo kolmannen kolmelta JPanel:sta. luoTulostaulukko luo jokaiselle sarakkeelle napin, jossa on sarakkeen nimi, sekä tyhjän JLabelin pisteiden kirjaamista varten.
+     * 
+     * @return JPanel taulukko
+     */
     private JPanel luoTulostaulukko() {
         JPanel p = new JPanel(new GridLayout(18, 2));
 
@@ -167,6 +196,14 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         return p;
     }
 
+    /**
+     * Metodi selvittää mikä nappi aiheutti ActionEventin ja reagoi sen mukaisesti.
+     * 
+     * @param e ActienEvent e
+     * @see main.Kayttoliittyma#reagoiHeittonappiin(javax.swing.JButton) 
+     * @see main.Kayttoliittyma#reagoiNoppaan(javax.swing.JToggleButton) 
+     * @see main.Kayttoliittyma#reagoiSarakkeeseen(javax.swing.JToggleButton) 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
@@ -187,6 +224,12 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         }
     }
 
+    /**
+     * Kun jotakin nopista painetaan, metodi välittää painetun nopan indeksin pelilogiikalle.
+     * Jos noppa on vapaa, se valitaan. Jos noppa on valittu, se vapautetaan.
+     * 
+     * @param button noppa, jota klikattiin
+     */
     public void reagoiNoppaan(JToggleButton button) {
         for (int i = 0; i < 5; i++) {
             if (this.nopat.get(i).equals(button)) {
@@ -195,38 +238,60 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         }
     }
 
+    /**
+     * Kun jotakin Tulostaulukon sarakkeista painetaan, metodi välittää painetun napin tekstin pelilogiikalle.
+     * Pelilogiikka selvittää voiko pisteet tallentaa kyseiseen sarakkeeseen ja palauttaa -1 jos ei voi. Muussa tapauksessa pelilogiikka palauttaa pistemäärän, joka tallennetaan sarakkeen viereiseen JLabel:iin.
+     * Jos pisteet tallennettiin, muutetaan heittonapin otsikko, jotta nopat voidaan heittää uudestaan.
+     * 
+     * @param button nappi, jota klikattiin
+     * @see yatzy.Pelilogiikka#laskeSarakkeenPisteet(java.lang.String) 
+     * @see main.Kayttoliittyma#paivitaSummaJaValisumma() 
+     * @see main.Kayttoliittyma#lukitseTaulukko() 
+     */
     public void reagoiSarakkeeseen(JToggleButton button) {
-        if (button.getText().equals("VÄLISUMMA") || button.getText().equals("SUMMA")) {
+
+        int sarake = selvitaSarake(button);
+        int pointsit = this.logiikka.laskeSarakkeenPisteet(sarake);
+        
+        if (pointsit == -1) {
             return;
         }
-
-        JLabel sarake = selvitaSarake(button);
-
-        int pisteet = this.logiikka.laskeSarakkeenPisteet(button.getText());
-        sarake.setText(String.valueOf(pisteet));
-        sarake.setEnabled(false);
+        
+        this.pisteet.get(sarake).setText(String.valueOf(pointsit));
 
         paivitaSummaJaValisumma();
         lukitseTaulukko();
-        this.heittaja.setText("Heitä nopat");
+        this.heittaja.setText("Aloita peli");
     }
 
-    public JLabel selvitaSarake(JToggleButton button) {
+    /**
+     * Metodi selvittää painetun napin indeksin ja palauttaa sitä vastaavan JLabel:in.
+     * 
+     * @param button painettu nappi
+     * @return nappia vastaava JLabel
+     */
+    public int selvitaSarake(JToggleButton button) {
         for (int i = 0; i < this.sarakkeet.size(); i++) {
             if (this.sarakkeet.get(i).equals(button)) {
-                return this.pisteet.get(i);
+                return i;
             }
         }
-
-        return null;
+        return -1;
     }
 
+    /**
+     * Laskee taulokkoon summan ja välisumman taulukossa olevien arvojen perusteella.
+     */
     public void paivitaSummaJaValisumma() {
+        int valisumma = this.logiikka.getValisumma();
+        int summa = this.logiikka.getSumma();
         
+        this.pisteet.get(6).setText(String.valueOf(valisumma));
+        this.pisteet.get(16).setText(String.valueOf(summa));
     }
 
     public void reagoiHeittonappiin(JButton button) {
-        if (button.getText() == "Heitä nopat") {
+        if (button.getText() == "Aloita peli") {
             heitaKaikkiNopat();
             paivitaNopat();
             button.setText("Heitä valitsemani nopat uudestaan (1. kerta)");

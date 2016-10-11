@@ -74,23 +74,24 @@ public class Kasi {
     }
 
     /**
-     * valitseNoppa(int i) valitsee nopan taulukon indeksistä i.
+     * valitseNoppa(int i) valitsee tai vapauttaa nopan taulukon indeksistä i.
      * 
      * @param i valittavan nopan indeksi taulukossa
+     * @param b false vapauttaa nopan, true valitsee nopan
      * @see yatzy.Noppa#setValittu(boolean) 
      */
-    public void valitseNoppa(int i) {
-        this.nopat[i].setValittu(true);
+    public void valitseNoppa(int i, boolean b) {
+        this.nopat[i].setValittu(b);
     }
-
+    
     /**
-     * vapautaNoppa(int i) vapauttaa nopan taulukon indeksistä i.
+     * onkoValittu(int i) kertoo onko käden indeksissä i oleva noppa valittuna vai ei.
      * 
-     * @param i vapautettavan nopan indeksi taulukossa
-     * @see yatzy.Noppa#setValittu(boolean) 
+     * @param i nopan indeksi taulukossa
+     * @return false vapaalle, true valitulle nopalle
      */
-    public void vapautaNoppa(int i) {
-        this.nopat[i].setValittu(false);
+    public boolean onkoValittu(int i) {
+        return this.nopat[i].getValittu();
     }
 
     /**
