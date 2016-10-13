@@ -1,27 +1,15 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.PopupMenu;
+import java.awt.*;
+import javax.swing.*;
+import java.io.*;
+import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
-import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JToggleButton;
-import javax.swing.WindowConstants;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import yatzy.Pelilogiikka;
 
 /**
@@ -56,11 +44,15 @@ public class Kayttoliittyma implements Runnable, ActionListener {
     public void run() {
         frame = new JFrame("Yatzy");
         frame.setPreferredSize(new Dimension(1000, 800));
-        frame.setIconImage(new ImageIcon("src/noppa5").getImage());
+        frame.setIconImage(new ImageIcon("src/noppa5.png").getImage());
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        luoKomponentit(frame.getContentPane());
+        try {
+            luoKomponentit(frame.getContentPane());
+        } catch (IOException ex) {
+            Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         frame.pack();
         frame.setVisible(true);
@@ -71,7 +63,7 @@ public class Kayttoliittyma implements Runnable, ActionListener {
      * 
      * @param container 
      */
-    private void luoKomponentit(Container container) {
+    private void luoKomponentit(Container container) throws IOException {
         container.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
@@ -128,7 +120,7 @@ public class Kayttoliittyma implements Runnable, ActionListener {
      * 
      * @return JPanel nopat
      */
-    private JPanel luoNopat() {
+    private JPanel luoNopat() throws IOException {
         JPanel p = new JPanel(new GridLayout(1, 7));
 
         p.add(new JLabel());
