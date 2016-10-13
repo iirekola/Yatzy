@@ -7,7 +7,9 @@ Ohjelmointiprojektin tavoitteena on tuottaa graafisen käyttöliittymän kautta 
 ##Dokumentaatio##
 [aiheen kuvaus](dokumentaatio/aiheenKuvausJaRakenne.md),
 [tuntikirjanpito](dokumentaatio/tuntikirjanpito.md),
-[rakennekuvaus](/dokumentaatio/rakennekuvaus.md)
+[rakennekuvaus](/dokumentaatio/rakennekuvaus.md),
+[käyttöohje](/dokumentaatio/käyttöohjeet.md),
+[testausdokumentaatio](/dokumentaatio/testausdokumentti.md)
 
 Pit-raportti: https://htmlpreview.github.io/?https://github.com/iirekola/Yatzy/blob/master/dokumentaatio/pit/201610072055/index.html
 
