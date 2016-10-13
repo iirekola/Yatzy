@@ -31,6 +31,7 @@ Iso suora | silmäluvut 2, 3, 4, 5, 6 | 2+3+4+5+6 = 20 pistettä
 Täyskäsi | Kolme samaa silmälukua ja pari | 2+2+5+5+2  = 16 pistettä
 Sattuma | Mikä tahansa yhdistelmä | 6+2+1+4+4 = 17 pistettä
 Yatzy | Viisi samaa silmälukua. Yatzy on aina 50 pistettä. | 1+1+1+1+1 = 50 pistettä
+Summa | Kaikki pisteet yhteen laskettuna. |
 
 
 
