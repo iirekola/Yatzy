@@ -23,4 +23,6 @@ Pelaaja heittää viittä noppaa. Hän voi kahdesti valita heittävänsä osan n
 
 **[Sekvenssikaavio: Kaikkien noppien heittäminen](Yatzy sekvenssikaavio heitä nopat.png "Sekvenssikaavio heitä nopat")**
 
-**[Luokkakaavio: Pisteiden laskeminen](Yatzy sekvenssikaavio laske pisteet.png "Sekvenssikaavio laske pisteet")**
+**[Sekvenssikaavio: Pisteiden laskeminen](Yatzy sekvenssikaavio laske pisteet.png "Sekvenssikaavio laske pisteet")**
+
+**[Rakennekuvaus](dokumentaatio/rakennekuvaus.md)**
