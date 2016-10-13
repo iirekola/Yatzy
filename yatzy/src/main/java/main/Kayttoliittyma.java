@@ -280,7 +280,7 @@ public class Kayttoliittyma implements Runnable, ActionListener {
     }
 
     /**
-     * Laskee taulokkoon summan ja välisumman taulukossa olevien arvojen perusteella.
+     * Hakee taulukkoon pelilogiikasta nykyisen summan ja välisumman.
      */
     public void paivitaSummaJaValisumma() {
         int valisumma = this.logiikka.getValisumma();
@@ -290,6 +290,11 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         this.pisteet.get(16).setText(String.valueOf(summa));
     }
 
+    /**
+     * REagoi heittonapin painallukseen heittämällä nopat ja päivittämällä kuvat ja napin tekstin.
+     * 
+     * @param button painettu nappi
+     */
     public void reagoiHeittonappiin(JButton button) {
         if (button.getText() == "Aloita peli") {
             heitaKaikkiNopat();
@@ -307,14 +312,23 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         }
     }
 
+    /**
+     * Heittää valittuna olevat nopat.
+     */
     public void heitaValitutNopat() {
         this.logiikka.heitaValitutNopat();
     }
 
+    /**
+     * Heittään kaikki nopat.
+     */
     public void heitaKaikkiNopat() {
         this.logiikka.heitaKaikkiNopat();
     }
 
+    /**
+     * Päivittää noppanappeihin oikeaa silmälukua esittävät kuvat ja vapauttaa nopat.
+     */
     public void paivitaNopat() {
         int[] silmaluvut = this.logiikka.getSilmaluvut();
         for (int i = 0; i < 5; i++) {
@@ -330,12 +344,18 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         }
     }
 
+    /**
+     * vapauttaa kaikki pistetaulukon napit.
+     */
     public void vapautaTaulukko() {
         for (JToggleButton nappi : sarakkeet) {
             nappi.setEnabled(true);
         }
     }
 
+    /**
+     * lukitsee kaikki pistetaulukon napit.
+     */
     public void lukitseTaulukko() {
         for (JToggleButton nappi : sarakkeet) {
             nappi.setEnabled(false);

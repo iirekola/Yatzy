@@ -38,6 +38,23 @@ public class Kasi {
     public Noppa[] getNopat() {
         return this.nopat;
     }
+    
+    /**
+     * Asettaa nopille parametreinä olevat silmäluvut. Metodi on testausta varten.
+     * 
+     * @param n1 noppaan 1 asetettava arvo
+     * @param n2 noppaan 2 asetettava arvo
+     * @param n3 noppaan 3 asetettava arvo
+     * @param n4 noppaan 4 asetettava arvo
+     * @param n5 noppaan 5 asetettava arvo
+     */
+    public void setNopat(int n1, int n2, int n3, int n4, int n5) {
+        this.nopat[0].setArvo(n1);
+        this.nopat[1].setArvo(n2);
+        this.nopat[2].setArvo(n3);
+        this.nopat[3].setArvo(n4);
+        this.nopat[4].setArvo(n5);
+    }
 
     /**
      * heitaNoppa(Noppa n) kutsuu nopan n metodia heitaNoppaa.

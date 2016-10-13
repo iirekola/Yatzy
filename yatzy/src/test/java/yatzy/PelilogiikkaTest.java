@@ -117,4 +117,38 @@ public class PelilogiikkaTest {
         
         assertTrue(l.getKasi().getNopat()[2].getValittu());
     }
+    
+    @Test
+    public void laskeSarakkeenPisteetToimiiKunValisumma() {
+        Pelilogiikka l = new Pelilogiikka();
+        int pisteet = l.laskeSarakkeenPisteet(6);
+        
+        assertEquals(pisteet, -1);
+    }
+    
+    @Test
+    public void laskeSarakkeenPisteetToimiiKunSumma() {
+        Pelilogiikka l = new Pelilogiikka();
+        int pisteet = l.laskeSarakkeenPisteet(16);
+        
+        assertEquals(pisteet, -1);
+    }
+    
+    @Test
+    public void laskeSarakkeenPisteetToimiiKunKäytettySarake() {
+        Pelilogiikka l = new Pelilogiikka();
+        l.laskeSarakkeenPisteet(2);
+        int pisteet = l.laskeSarakkeenPisteet(2);
+        
+        assertEquals(pisteet, -1);
+    }
+    
+    @Test
+    public void laskeSarakkeenPisteetPalauttaaNumeron() {
+        Pelilogiikka l = new Pelilogiikka();
+        int pisteet = l.laskeSarakkeenPisteet(2);
+        
+        assertTrue(pisteet >= 0 && pisteet <= 50);
+    }
+    
 }

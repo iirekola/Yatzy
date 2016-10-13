@@ -75,4 +75,12 @@ public class NoppaTest {
         
         assertFalse(n.getValittu());
     }
+    
+    @Test
+    public void setArvoToimii() {
+        Noppa n = new Noppa();
+        n.setArvo(2);
+        
+        assertEquals(n.getArvo(), 2);
+    }
 }

@@ -31,6 +31,15 @@ public class Noppa {
     public int getArvo() {
         return this.arvo;
     }
+    
+    /**
+     * asettaa nopalle parametrina olevan arvon. Metodi on testausta varten.
+     * 
+     * @param arvo nopalle asetetava arvo
+     */
+    public void setArvo(int arvo) {
+        this.arvo = arvo;
+    }
 
     /**
      * setValittu(boolean b) asettaa nopan valituksi tai ei-valituksi. True valitsee nopan. False vapauttaa nopan.

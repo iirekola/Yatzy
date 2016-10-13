@@ -117,4 +117,20 @@ public class KasiTest {
         
         assertTrue(toimii);
     }
+    
+    @Test
+    public void setNopatToimii() {
+        Kasi k = new Kasi();
+        k.setNopat(1, 2, 3, 4, 5);
+        int[] t = k.getSilmaluvut();
+        boolean toimii = true;
+        
+        for (int i = 0; i < 5; i++) {
+            if(t[i] != i + 1) {
+                toimii = false;
+            }
+        }
+        
+        assertTrue(toimii);
+    }
 }

@@ -78,10 +78,20 @@ public class Pelilogiikka {
         return this.laskuri.laskeSarakkeenPisteet(sarake);
     }
     
+    /**
+     * Metodi palauttaa laskurin "SUMMA" sarakken arvon.
+     * 
+     * @return summa
+     */
     public int getSumma() {
         return this.laskuri.getSumma();
     }
     
+    /**
+     * Metodi palauttaa laskurin "VÄLISUMMA" sarakkeen arvon.
+     * 
+     * @return välisumma
+     */
     public int getValisumma() {
         return this.laskuri.getValisumma();
     }

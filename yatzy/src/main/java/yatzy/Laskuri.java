@@ -21,6 +21,24 @@ public class Laskuri {
         this.pisteet = new int[17];
         alustaPisteet();
     }
+    
+    /**
+     * Palauttaa käden.
+     * 
+     * @return käsi
+     */
+    public Kasi getKasi() {
+        return this.kasi;
+    }
+    
+    /**
+     * Palauttaa pistetaulukon.
+     * 
+     * @return pisteet
+     */
+    public int[] getPisteet() {
+        return this.pisteet;
+    }
 
     /**
      * alustaPisteet() asettaa kaikkiin taulukon indekseihin arvon -1.
@@ -133,12 +151,25 @@ public class Laskuri {
 //    14 Sattuma
 //    15 Yatzy
 //    16 SUMMA
-    private int numero(int i) {
+    
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeille ykkoset...kuutoset.
+     * 
+     * @param i haettu silmäluku
+     * @return kättä vastaava pistemäärä
+     */
+    public int numero(int i) {
         int[] jarj = jarjestaSilmaluvut();
         return jarj[i] * (i + 1);
     }
 
-    private int montaSamaa(int m) {
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeille kaksi, kolme ja neljä samaa.
+     * 
+     * @param i montako samaa
+     * @return kättä vastaava pistemäärä
+     */
+    public int montaSamaa(int m) {
         int[] jarj = jarjestaSilmaluvut();
         for (int i = 6; i > 0; i--) {
             if (jarj[i - 1] >= m) {
@@ -148,7 +179,13 @@ public class Laskuri {
         return 0;
     }
 
-    private int kaksiParia() {
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeelle kaksi paria.
+     * 
+     * 
+     * @return kättä vastaava pistemäärä
+     */
+    public int kaksiParia() {
         int[] jarj = jarjestaSilmaluvut();
         int summa = 0;
         int lkm = 0;
@@ -165,7 +202,13 @@ public class Laskuri {
         return 0;
     }
 
-    private int pikkuSuora() {
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeelle pikku suora.
+     * 
+     * 
+     * @return kättä vastaava pistemäärä
+     */
+    public int pikkuSuora() {
         int[] jarj = jarjestaSilmaluvut();
         for (int i = 0; i < 5; i++) {
             if (jarj[i] <= 0) {
@@ -175,7 +218,13 @@ public class Laskuri {
         return 15;
     }
 
-    private int isoSuora() {
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeelle iso suora.
+     * 
+     * 
+     * @return kättä vastaava pistemäärä
+     */
+    public int isoSuora() {
         int[] jarj = jarjestaSilmaluvut();
         for (int i = 1; i < 6; i++) {
             if (jarj[i] <= 0) {
@@ -185,7 +234,13 @@ public class Laskuri {
         return 20;
     }
 
-    private int tayskasi() {
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeelle täyskäsi.
+     * 
+     * 
+     * @return kättä vastaava pistemäärä
+     */
+    public int tayskasi() {
         int summa = 0;
         boolean kaksi = false;
         boolean kolme = false;
@@ -208,7 +263,13 @@ public class Laskuri {
         return 0;
     }
 
-    private int sattuma() {
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeelle sattuma.
+     * 
+     * 
+     * @return kättä vastaava pistemäärä
+     */
+    public int sattuma() {
         int summa = 0;
         for (int i : this.kasi.getSilmaluvut()) {
             summa += i;
@@ -216,7 +277,13 @@ public class Laskuri {
         return summa;
     }
 
-    private int yatzy() {
+    /**
+     * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeelle yatzy.
+     * 
+     * 
+     * @return kättä vastaava pistemäärä
+     */
+    public int yatzy() {
         int[] jarj = jarjestaSilmaluvut();
         for (int i = 0; i < 6; i++) {
             if (jarj[i] == 5) {
@@ -226,7 +293,13 @@ public class Laskuri {
         return 0;
     }
 
-    private int valisumma() {
+    /**
+     * Metodi laskee tallennettujen pisteiden perusteella numerosarakkeiden pisteiden summan.
+     * 
+     * 
+     * @return laskettu välisumma
+     */
+    public int valisumma() {
         int valisumma = osaSumma(0, 6);
         if (valisumma >= 63) {
             valisumma += 50;
@@ -234,11 +307,42 @@ public class Laskuri {
         return valisumma;
     }
 
-    private int summa() {
+    /**
+     * Palauttaa sarakken "VÄLISUMMA" arvon.
+     * 
+     * @return välsumma taulukosta
+     */
+    public int getValisumma() {
+        return this.pisteet[6];
+    }
+
+    /**
+     * Metodi laskee tallennettujen pisteiden perusteella kaikkien sarakkeiden pisteiden summan.
+     * 
+     * 
+     * @return laskettu summa
+     */
+    public int summa() {
         return valisumma() + osaSumma(7, 15);
     }
 
-    private int osaSumma(int alku, int loppu) {
+    /**
+     * Palauttaa sarakkeen "SUMMA" arvon.
+     * 
+     * @return summa taulukosta
+     */
+    public int getSumma() {
+        return this.pisteet[16];
+    }
+
+    /**
+     * Metodi laskee tallennettujen pisteiden summan annetusta alkusarakkeesta annettuunn loppusarakkeeseen.
+     * 
+     * @param alku ensimmäisen summattavan sarakkeen indeksi
+     * @param loppu viimeisen summattavan sarakkeen indeksi
+     * @return osasumma
+     */
+    public int osaSumma(int alku, int loppu) {
         int summa = 0;
         for (int i = alku; i < loppu; i++) {
             if (this.pisteet[i] != -1) {
@@ -254,7 +358,7 @@ public class Laskuri {
      *
      * @return int[] jossa eri silmälukujen lukumäärät.
      */
-    private int[] jarjestaSilmaluvut() {
+    public int[] jarjestaSilmaluvut() {
         int[] jarjestetty = new int[6];
         for (int i = 0; i < 6; i++) {
             jarjestetty[i] = 0;
@@ -264,21 +368,14 @@ public class Laskuri {
         }
         return jarjestetty;
     }
-
-    public int getSumma() {
-        return this.pisteet[16];
-    }
-
-    public int getValisumma() {
-        return this.pisteet[6];
-    }
-
-    public boolean onTaysi() {
-        for (int piste : this.pisteet) {
-            if (piste == -1) {
-                return false;
-            }
-        }
-        return true;
-    }
+    
+// ei nykyisellään tarvetta tälle metodille
+//    public boolean onTaysi() {
+//        for (int piste : this.pisteet) {
+//            if (piste == -1) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 }
