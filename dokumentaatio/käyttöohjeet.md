@@ -1,10 +1,15 @@
 ﻿#Käyttöohjeet#
 
-Kun käynnistät ohjelman, ruudulle avautuu peli-ikkuna. Aloita peli klikkaamalla "Aloita peli" -nappia. Ohjelma arpoo nopat. Valitse klikkaamalla nopat, jotka haluat heittää uudestaan. 
+Kun käynnistät ohjelman, ruudulle avautuu peli-ikkuna.
+
+Aloita peli klikkaamalla "Aloita peli" -nappia. Ohjelma arpoo nopat. Valitse klikkaamalla nopat, jotka haluat heittää uudestaan. 
 Heitä valitut nopat klikkaamalla "Heitä valitsemani nopat uudestaan (1. kerta)". Ohjelma arpoo valituille nopille uudet arvot. Jos et halua heitää yhtäkään noppaa, paina nappia heitä nopat niin, ettet ole valinnut yhtäkään noppaa.
+
 Nyt voit taas valita nopat, jotka haluat heittää uudelleen. Heitä valitut nopat klikkaamalla "Heitä valitsemani nopat (2. kerta)". Ohjelma arpoo valituille nopille uudet arvot. Nyt et saa enää uusia heittoja. 
 
-Tallenna tulos haluamaasi sarakkeeseen klikkaamalla kyseisen sarakkeen nimeä. Et voi tallentaa tulosta sarakkeisiin "VÄLISUMMA", "SUMMA" tai mihinkään sarakkeeseen, johon olet jo tallentanut arvon. Kun olet valinnut sarakkeen, taulukko lukittuu ja voit aloittaa seuraavan kierroksen painamalla nappia "Aloita peli". Peli etenee yllä kuvatulla tavalla kunnes kaikki sarakket on täytetty. Pelin voi lopettaa sulkemalla ikkunan. Uuden pelin saa käynnistämällä ohjelman uudestaan.
+Tallenna tulos haluamaasi sarakkeeseen klikkaamalla kyseisen sarakkeen nimeä. Et voi tallentaa tulosta sarakkeisiin "VÄLISUMMA", "SUMMA" tai mihinkään sarakkeeseen, johon olet jo tallentanut arvon. Kun olet valinnut sarakkeen, taulukko lukittuu ja voit aloittaa seuraavan kierroksen painamalla nappia "Aloita peli".
+
+Peli etenee yllä kuvatulla tavalla kunnes kaikki sarakket on täytetty. Pelin voi lopettaa sulkemalla ikkunan. Uuden pelin saa käynnistämällä ohjelman uudestaan.
 
 ###Pisteytys:###
 
