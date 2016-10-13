@@ -244,7 +244,7 @@ public class Kayttoliittyma implements Runnable, ActionListener {
      * Jos pisteet tallennettiin, muutetaan heittonapin otsikko, jotta nopat voidaan heittää uudestaan.
      * 
      * @param button nappi, jota klikattiin
-     * @see yatzy.Pelilogiikka#laskeSarakkeenPisteet(java.lang.String) 
+     * @see yatzy.Pelilogiikka#laskeSarakkeenPisteet(int) 
      * @see main.Kayttoliittyma#paivitaSummaJaValisumma() 
      * @see main.Kayttoliittyma#lukitseTaulukko() 
      */

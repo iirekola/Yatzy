@@ -57,7 +57,7 @@ public class Pelilogiikka {
      * Jos noppa on valittu, se vapautetaan. Jos noppa on vapaa, se valitaan.
      * 
      * @param monesko valittavan nopan indeksi taulukossa
-     * @see yatzy.Kasi#valitseNoppa(int) 
+     * @see yatzy.Kasi#valitseNoppa(int, boolean)  
      * @see yatzy.Kasi#onkoValittu(int) 
      */
     public void valitseNoppa(int monesko) {

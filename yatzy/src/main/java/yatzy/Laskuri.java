@@ -166,7 +166,7 @@ public class Laskuri {
     /**
      * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeille kaksi, kolme ja neljä samaa.
      * 
-     * @param i montako samaa
+     * @param m montako samaa
      * @return kättä vastaava pistemäärä
      */
     public int montaSamaa(int m) {
