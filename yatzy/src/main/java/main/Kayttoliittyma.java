@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -55,7 +56,7 @@ public class Kayttoliittyma implements Runnable, ActionListener {
     public void run() {
         frame = new JFrame("Yatzy");
         frame.setPreferredSize(new Dimension(1000, 800));
-        frame.setIconImage(new ImageIcon("src/noppa5.png").getImage());
+        frame.setIconImage(new ImageIcon("src/noppa5").getImage());
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
