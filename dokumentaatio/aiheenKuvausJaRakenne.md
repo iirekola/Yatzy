@@ -11,7 +11,7 @@ Pelaaja heittää viittä noppaa. Hän voi kahdesti valita heittävänsä osan n
 - Nopanheitto
 - Uudelleen heitettävien noppien valitseminen
 - Pistesarakkeen valinta
-- Pisteiden kirjaus
+- Pisteiden laskeminen ja kirjaus
 
 **Mahdollisia lisätoimintoja:**
 - High Score-taulukko
@@ -21,3 +21,6 @@ Pelaaja heittää viittä noppaa. Hän voi kahdesti valita heittävänsä osan n
 
 **[Luokkakaavio](Yatzy.png "Luokkakaavio")**
 
+**[Sekvenssikaavio: Kaikkien noppien heittäminen](Yatzy sekvenssikaavio heitä nopat.png "Sekvenssikaavio heitä nopat")**
+
+**[Luokkakaavio: Pisteiden laskeminen](Yatzy sekvenssikaavio laske pisteet.png "Sekvenssikaavio laske pisteet")**
