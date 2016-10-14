@@ -35,37 +35,6 @@ public class LaskuriTest {
 
         assertEquals(l.getKasi(), k);
     }
-
-    @Test
-    public void konstruktoriLuoPistetaulukon() {
-        Kasi k = new Kasi();
-        Laskuri l = new Laskuri(k);
-
-        assertEquals(l.getPisteet().length, 17);
-    }
-    
-    @Test
-    public void konstruktoriAlustaaPistetaulukon() {
-        Kasi k = new Kasi();
-        Laskuri l = new Laskuri(k);
-
-        assertEquals(l.getPisteet()[10], -1);
-    }
-    
-    @Test
-    public void alustaPisteetAsettaaArvot() {
-        Kasi k = new Kasi();
-        Laskuri l = new Laskuri(k);
-        boolean toimii = true;
-        
-        for (int piste : l.getPisteet()) {
-            if(piste != -1) {
-                toimii = false;
-            }
-        }
-
-        assertTrue(toimii);
-    }
     
     @Test
     public void laskeSarakkeenPisteetPalauttaaOikeinKunValisumma() {
@@ -101,7 +70,7 @@ public class LaskuriTest {
         Laskuri l = new Laskuri(k);
         l.laskeSarakkeenPisteet(6);
 
-        assertEquals(l.getPisteet()[6], -1);
+        assertEquals(l.getPisteet().getSarake(6), -1);
     }
     
     @Test
@@ -110,7 +79,7 @@ public class LaskuriTest {
         Laskuri l = new Laskuri(k);
         l.laskeSarakkeenPisteet(2);
 
-        assertTrue(l.getPisteet()[2] >= 0 && l.getPisteet()[2] < 16);
+        assertTrue(l.getPisteet().getSarake(2) >= 0 && l.getPisteet().getSarake(2) < 16);
     }
     
     @Test
@@ -119,7 +88,7 @@ public class LaskuriTest {
         Laskuri l = new Laskuri(k);
         l.laskeSarakkeenPisteet(2);
 
-        assertTrue(l.getPisteet()[6] >= 0 && l.getPisteet()[2] < 16);
+        assertTrue(l.getPisteet().getSarake(6) >= 0 && l.getPisteet().getSarake(2) < 16);
     }
     
     @Test
@@ -128,7 +97,7 @@ public class LaskuriTest {
         Laskuri l = new Laskuri(k);
         l.laskeSarakkeenPisteet(2);
 
-        assertTrue(l.getPisteet()[16] >= 0 && l.getPisteet()[2] < 16);
+        assertTrue(l.getPisteet().getSarake(16) >= 0 && l.getPisteet().getSarake(2) < 16);
     }
     
     @Test

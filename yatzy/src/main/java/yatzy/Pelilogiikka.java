@@ -53,7 +53,7 @@ public class Pelilogiikka {
     }
     
     /**
-     * valitseNoppa(int monesko) tarkistaa onko annetussa indeksissö oleva noppa valittu vai ei.
+     * valitseNoppa(int monesko) tarkistaa onko annetussa indeksissä oleva noppa valittu vai ei.
      * Jos noppa on valittu, se vapautetaan. Jos noppa on vapaa, se valitaan.
      * 
      * @param monesko valittavan nopan indeksi taulukossa

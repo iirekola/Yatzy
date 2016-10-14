@@ -13,21 +13,20 @@ import javax.imageio.ImageIO;
 import yatzy.Pelilogiikka;
 
 /**
- * Kayttoliittyma hoitaa graafisen käyttöliittymön komponenttien luomisen ja
- * delegoi niihin liittyvät metodikutsut Pelilogiikalle.
+ * Kayttoliittyma hoitaa graafisen käyttöliittymän komponenttien luomisen.
  * 
  * @see yatzy.Pelilogiikka
  * @author iiris
  */
-public class Kayttoliittyma implements Runnable, ActionListener {
+public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
     private Pelilogiikka logiikka = new Pelilogiikka();
 
-    private JButton heittaja;
-    private ArrayList<JToggleButton> nopat = new ArrayList<>();
-    private ArrayList<JToggleButton> sarakkeet = new ArrayList<>();
-    private ArrayList<JLabel> pisteet = new ArrayList<>();
+    private ArrayList<JToggleButton> nopat;
+    private ArrayList<JToggleButton> sarakkeet;
+    private ArrayList<JLabel> pisteet;
+    private JLabel label;
 
     /**
      * Konstruktori ei tee mitään erityistä.
@@ -95,19 +94,19 @@ public class Kayttoliittyma implements Runnable, ActionListener {
     }
 
     /**
-     * Metodi luo ensimmäisen kolmesta JPanel:sta. Ohjeboksi sisältää ohjeteksin ja napin noppien heittämiseen.
+     * Metodi luo ensimmäisen kolmesta JPanel:sta. Ohjeboksi sisältää ohjeteksin ja napin noppien heittämiseen. Napille asetetetaan HeittonapinKuuntelija.
      * 
      * @return JPanel ohjeboksi
      */
     private JPanel luoOhjeboksi() {
         JPanel p = new JPanel(new GridLayout(3, 2));
-        JLabel label = new JLabel("Tervetuloa pelaamaan Yatzya!");
+        this.label = new JLabel("Tervetuloa pelaamaan Yatzya!");
         label.setFont(new Font("Serif", Font.PLAIN, 22));
         p.add(label);
 
-        this.heittaja = new JButton("Aloita peli");
+        JButton heittaja = new JButton("Heitä nopat");
         heittaja.setFont(new Font("Serif", Font.PLAIN, 22));
-        heittaja.addActionListener(this);
+        heittaja.addActionListener(new HeittonapinKuuntelija(this.logiikka, this, label));
         p.add(heittaja);
 
         p.add(new JLabel());
@@ -116,18 +115,20 @@ public class Kayttoliittyma implements Runnable, ActionListener {
     }
 
     /**
-     * Metodi luo toisen kolmelta JPanel:sta. luoNopat luo jokaiselle nopalle napin, jossa on nopan kuva.
+     * Metodi luo toisen kolmesta JPanel:sta. Metodi luo jokaiselle nopalle napin, jossa on nopan kuva. Napeille asetetaan NopanKuuntelija.
      * 
      * @return JPanel nopat
      */
     private JPanel luoNopat() throws IOException {
         JPanel p = new JPanel(new GridLayout(1, 7));
+        this.nopat = new ArrayList<>();
+        NopanKuuntelija nk = new NopanKuuntelija(this.logiikka, nopat);
 
         p.add(new JLabel());
 
         for (int i = 0; i < 5; i++) {
             JToggleButton noppa = new JToggleButton(new ImageIcon("src/noppa5.png"));
-            noppa.addActionListener(this);
+            noppa.addActionListener(nk);
             p.add(noppa);
             this.nopat.add(noppa);
         }
@@ -138,11 +139,15 @@ public class Kayttoliittyma implements Runnable, ActionListener {
     }
 
     /**
-     * Metodi luo kolmannen kolmelta JPanel:sta. luoTulostaulukko luo jokaiselle sarakkeelle napin, jossa on sarakkeen nimi, sekä tyhjän JLabelin pisteiden kirjaamista varten.
+     * Metodi luo kolmannen kolmelta JPanel:sta. luoTulostaulukko luo jokaiselle sarakkeelle napin, jossa on sarakkeen nimi, sekä tyhjän JLabelin pisteiden kirjaamista varten. NApeille asetetaan SarakkeenKuuntelia.
      * 
      * @return JPanel taulukko
      */
     private JPanel luoTulostaulukko() {
+        this.sarakkeet = new ArrayList<>();
+        this.pisteet = new ArrayList<>();
+        SarakkeenKuuntelija sk = new SarakkeenKuuntelija(this.logiikka, this, sarakkeet, pisteet);
+        
         JPanel p = new JPanel(new GridLayout(18, 2));
 
         JLabel yatzy = new JLabel("YATZY");
@@ -153,170 +158,40 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         pelaaja.setFont(new Font("Serif", Font.BOLD, 16));
         p.add(pelaaja);
 
-        this.sarakkeet.add(new JToggleButton("Ykköset"));
-        this.sarakkeet.add(new JToggleButton("Kakkoset"));
-        this.sarakkeet.add(new JToggleButton("Kolmoset"));
-        this.sarakkeet.add(new JToggleButton("Neloset"));
-        this.sarakkeet.add(new JToggleButton("Viitoset"));
-        this.sarakkeet.add(new JToggleButton("Kuutoset"));
-        this.sarakkeet.add(new JToggleButton("VÄLISUMMA"));
-        this.sarakkeet.add(new JToggleButton("Pari"));
-        this.sarakkeet.add(new JToggleButton("Kaksi paria"));
-        this.sarakkeet.add(new JToggleButton("Kolme samaa"));
-        this.sarakkeet.add(new JToggleButton("Neljä samaa"));
-        this.sarakkeet.add(new JToggleButton("Pikku suora"));
-        this.sarakkeet.add(new JToggleButton("Iso suora"));
-        this.sarakkeet.add(new JToggleButton("Täyskäsi"));
-        this.sarakkeet.add(new JToggleButton("Sattuma"));
-        this.sarakkeet.add(new JToggleButton("Yatzy"));
-        this.sarakkeet.add(new JToggleButton("SUMMA"));
+        sarakkeet.add(new JToggleButton("Ykköset"));
+        sarakkeet.add(new JToggleButton("Kakkoset"));
+        sarakkeet.add(new JToggleButton("Kolmoset"));
+        sarakkeet.add(new JToggleButton("Neloset"));
+        sarakkeet.add(new JToggleButton("Viitoset"));
+        sarakkeet.add(new JToggleButton("Kuutoset"));
+        sarakkeet.add(new JToggleButton("VÄLISUMMA"));
+        sarakkeet.add(new JToggleButton("Pari"));
+        sarakkeet.add(new JToggleButton("Kaksi paria"));
+        sarakkeet.add(new JToggleButton("Kolme samaa"));
+        sarakkeet.add(new JToggleButton("Neljä samaa"));
+        sarakkeet.add(new JToggleButton("Pikku suora"));
+        sarakkeet.add(new JToggleButton("Iso suora"));
+        sarakkeet.add(new JToggleButton("Täyskäsi"));
+        sarakkeet.add(new JToggleButton("Sattuma"));
+        sarakkeet.add(new JToggleButton("Yatzy"));
+        sarakkeet.add(new JToggleButton("SUMMA"));
 
         for (JToggleButton nappi : sarakkeet) {
             nappi.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             nappi.setFont(new Font("Serif", Font.PLAIN, 16));
-            nappi.addActionListener(this);
+            nappi.addActionListener(sk);
             nappi.setEnabled(false);
 
             JLabel piste = new JLabel();
             piste.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             piste.setFont(new Font("Serif", Font.PLAIN, 16));
-            this.pisteet.add(piste);
+            pisteet.add(piste);
 
             p.add(nappi);
             p.add(piste);
         }
 
         return p;
-    }
-
-    /**
-     * Metodi selvittää mikä nappi aiheutti ActionEventin ja reagoi sen mukaisesti.
-     * 
-     * @param e ActienEvent e
-     * @see main.Kayttoliittyma#reagoiHeittonappiin(javax.swing.JButton) 
-     * @see main.Kayttoliittyma#reagoiNoppaan(javax.swing.JToggleButton) 
-     * @see main.Kayttoliittyma#reagoiSarakkeeseen(javax.swing.JToggleButton) 
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        try {
-            JToggleButton button = (JToggleButton) e.getSource();
-
-            if (this.nopat.contains(button)) {
-                reagoiNoppaan(button);
-            }
-
-            if (this.sarakkeet.contains(button)) {
-                reagoiSarakkeeseen(button);
-            }
-
-        } catch (Exception exptn) {
-            JButton button = (JButton) e.getSource();
-
-            reagoiHeittonappiin(button);
-        }
-    }
-
-    /**
-     * Kun jotakin nopista painetaan, metodi välittää painetun nopan indeksin pelilogiikalle.
-     * Jos noppa on vapaa, se valitaan. Jos noppa on valittu, se vapautetaan.
-     * 
-     * @param button noppa, jota klikattiin
-     */
-    public void reagoiNoppaan(JToggleButton button) {
-        for (int i = 0; i < 5; i++) {
-            if (this.nopat.get(i).equals(button)) {
-                this.logiikka.valitseNoppa(i);
-            }
-        }
-    }
-
-    /**
-     * Kun jotakin Tulostaulukon sarakkeista painetaan, metodi välittää painetun napin tekstin pelilogiikalle.
-     * Pelilogiikka selvittää voiko pisteet tallentaa kyseiseen sarakkeeseen ja palauttaa -1 jos ei voi. Muussa tapauksessa pelilogiikka palauttaa pistemäärän, joka tallennetaan sarakkeen viereiseen JLabel:iin.
-     * Jos pisteet tallennettiin, muutetaan heittonapin otsikko, jotta nopat voidaan heittää uudestaan.
-     * 
-     * @param button nappi, jota klikattiin
-     * @see yatzy.Pelilogiikka#laskeSarakkeenPisteet(int) 
-     * @see main.Kayttoliittyma#paivitaSummaJaValisumma() 
-     * @see main.Kayttoliittyma#lukitseTaulukko() 
-     */
-    public void reagoiSarakkeeseen(JToggleButton button) {
-
-        int sarake = selvitaSarake(button);
-        int pointsit = this.logiikka.laskeSarakkeenPisteet(sarake);
-        
-        if (pointsit == -1) {
-            return;
-        }
-        
-        this.pisteet.get(sarake).setText(String.valueOf(pointsit));
-
-        paivitaSummaJaValisumma();
-        lukitseTaulukko();
-        this.heittaja.setText("Aloita peli");
-    }
-
-    /**
-     * Metodi selvittää painetun napin indeksin ja palauttaa sitä vastaavan JLabel:in.
-     * 
-     * @param button painettu nappi
-     * @return nappia vastaava JLabel
-     */
-    public int selvitaSarake(JToggleButton button) {
-        for (int i = 0; i < this.sarakkeet.size(); i++) {
-            if (this.sarakkeet.get(i).equals(button)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Hakee taulukkoon pelilogiikasta nykyisen summan ja välisumman.
-     */
-    public void paivitaSummaJaValisumma() {
-        int valisumma = this.logiikka.getValisumma();
-        int summa = this.logiikka.getSumma();
-        
-        this.pisteet.get(6).setText(String.valueOf(valisumma));
-        this.pisteet.get(16).setText(String.valueOf(summa));
-    }
-
-    /**
-     * REagoi heittonapin painallukseen heittämällä nopat ja päivittämällä kuvat ja napin tekstin.
-     * 
-     * @param button painettu nappi
-     */
-    public void reagoiHeittonappiin(JButton button) {
-        if (button.getText() == "Aloita peli") {
-            heitaKaikkiNopat();
-            paivitaNopat();
-            button.setText("Heitä valitsemani nopat uudestaan (1. kerta)");
-        } else if (button.getText() == "Heitä valitsemani nopat uudestaan (1. kerta)") {
-            heitaValitutNopat();
-            paivitaNopat();
-            button.setText("Heitä valitsemani nopat uudestaan (2. kerta)");
-        } else if (button.getText() == "Heitä valitsemani nopat uudestaan (2. kerta)") {
-            heitaValitutNopat();
-            paivitaNopat();
-            button.setText("Kirjaa tulos");
-            vapautaTaulukko();
-        }
-    }
-
-    /**
-     * Heittää valittuna olevat nopat.
-     */
-    public void heitaValitutNopat() {
-        this.logiikka.heitaValitutNopat();
-    }
-
-    /**
-     * Heittään kaikki nopat.
-     */
-    public void heitaKaikkiNopat() {
-        this.logiikka.heitaKaikkiNopat();
     }
 
     /**
@@ -353,6 +228,10 @@ public class Kayttoliittyma implements Runnable, ActionListener {
         for (JToggleButton nappi : sarakkeet) {
             nappi.setEnabled(false);
         }
+    }
+    
+    public void setLabel(String teksti) {
+        this.label.setText(teksti);
     }
 
 }

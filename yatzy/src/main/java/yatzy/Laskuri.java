@@ -6,7 +6,7 @@ package yatzy;
 public class Laskuri {
 
     private Kasi kasi;
-    private int[] pisteet;
+    private Taulukko pisteet;
 
     /**
      * Konstruktori asettaa laskurille Käsi-muuttujan ja luo taulukon pisteiden
@@ -14,12 +14,10 @@ public class Laskuri {
      * -1.
      *
      * @param kasi käsi, josta laskuri hakee noppien tilan
-     * @see yatzy.Laskuri#alustaPisteet()
      */
     public Laskuri(Kasi kasi) {
         this.kasi = kasi;
-        this.pisteet = new int[17];
-        alustaPisteet();
+        this.pisteet = new Taulukko();
     }
     
     /**
@@ -36,17 +34,8 @@ public class Laskuri {
      * 
      * @return pisteet
      */
-    public int[] getPisteet() {
+    public Taulukko getPisteet() {
         return this.pisteet;
-    }
-
-    /**
-     * alustaPisteet() asettaa kaikkiin taulukon indekseihin arvon -1.
-     */
-    public void alustaPisteet() {
-        for (int i = 0; i < 17; i++) {
-            this.pisteet[i] = -1;
-        }
     }
 
     /**
@@ -55,7 +44,7 @@ public class Laskuri {
      * tallentaa, metodi laskee pisteiden määrän ja tallentaa ja palauttaa sen,
      * sekä päivittää summan ja välisumman.
      *
-     * @param sarake Sarakkeen nimi, johon tulos tallennetaan
+     * @param sarake sarakkeen indeksi taulukossa
      * @return sarakkeeseeen tallennettavat pisteet
      *
      * @see yatzy.Laskuri#laskePisteet(int)
@@ -64,10 +53,10 @@ public class Laskuri {
     public int laskeSarakkeenPisteet(int sarake) {
         if (voiTallentaa(sarake)) {
             int pointsit = laskePisteet(sarake);
-            this.pisteet[sarake] = pointsit;
+            this.pisteet.setSarake(sarake, pointsit);
 
-            this.pisteet[6] = valisumma();
-            this.pisteet[16] = summa();
+            this.pisteet.setSarake(6, valisumma());
+            this.pisteet.setSarake(16, summa());
 
             return pointsit;
         }
@@ -86,7 +75,7 @@ public class Laskuri {
         if (sarake == 6 || sarake == 16) {       // Välisumma, summa
             return false;
         }
-        if (this.pisteet[sarake] == -1) {
+        if (this.pisteet.getSarake(sarake) == -1) {
             return true;
         }
         return false;
@@ -132,25 +121,6 @@ public class Laskuri {
         }
         return -1;
     }
-
-//    Taulukon sisältö:
-//    0 Ykköset
-//    1 Kakkoset
-//    2 Kolmoset
-//    3 Neloset
-//    4 Viitoset
-//    5 Kuutoset
-//    6 VÄLISUMMA
-//    7 Pari
-//    8 Kaksi paria
-//    9 Kolme samaa
-//    10 Neljä samaa
-//    11 Pikku suora
-//    12 Iso suora
-//    13 Täyskäsi
-//    14 Sattuma
-//    15 Yatzy
-//    16 SUMMA
     
     /**
      * Metodi laskee käden silmälukuja vastaavat pisteet sarakkeille ykkoset...kuutoset.
@@ -313,7 +283,7 @@ public class Laskuri {
      * @return välsumma taulukosta
      */
     public int getValisumma() {
-        return this.pisteet[6];
+        return this.pisteet.getSarake(6);
     }
 
     /**
@@ -332,7 +302,7 @@ public class Laskuri {
      * @return summa taulukosta
      */
     public int getSumma() {
-        return this.pisteet[16];
+        return this.pisteet.getSarake(16);
     }
 
     /**
@@ -345,8 +315,8 @@ public class Laskuri {
     public int osaSumma(int alku, int loppu) {
         int summa = 0;
         for (int i = alku; i < loppu; i++) {
-            if (this.pisteet[i] != -1) {
-                summa += this.pisteet[i];
+            if (this.pisteet.getSarake(i) != -1) {
+                summa += this.pisteet.getSarake(i);
             }
         }
         return summa;
@@ -368,14 +338,4 @@ public class Laskuri {
         }
         return jarjestetty;
     }
-    
-// ei nykyisellään tarvetta tälle metodille
-//    public boolean onTaysi() {
-//        for (int piste : this.pisteet) {
-//            if (piste == -1) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 }
