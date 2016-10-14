@@ -146,6 +146,7 @@ public class Kayttoliittyma implements Runnable {
     private JPanel luoTulostaulukko() {
         this.sarakkeet = new ArrayList<>();
         this.pisteet = new ArrayList<>();
+       
         SarakkeenKuuntelija sk = new SarakkeenKuuntelija(this.logiikka, this, sarakkeet, pisteet);
         
         JPanel p = new JPanel(new GridLayout(18, 2));

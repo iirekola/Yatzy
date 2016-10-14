@@ -17,4 +17,6 @@ Päivä | Tunnit | Kuvaus
 11.10.2016 | 7h | Laskuri, käyttöliittymä, javaDoc, dokumentaatio
 12.10.2016 | 2h | Laskurin testejä
 13.10.2016 | 5h | Laskurin testejä, Dokumentaation päivitystä, jar tiedoston luonti ja järjetöntä tappelua kuvatiedostojen kanssa
+14.10.2016 | 4h | Laskurin jakaminen ja käyttöliittymän ActionListenereiden eriyttäminen, kuvien ja jar:in kanssa tappelua.
+... | ... | ...
 ... | ... | ...
