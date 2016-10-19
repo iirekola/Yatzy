@@ -17,8 +17,7 @@ Ohjelmointiprojektin tavoitteena on tuottaa graafisen käyttöliittymän kautta 
 
 [JavaDoc](https://htmlpreview.github.io/?https://github.com/iirekola/Yatzy/blob/master/dokumentaatio/checkstyle-raportti/site/apidocs/index.html)
 
-[jar](/yatzy.zip)
-Jar-tiedosto ja sen tarvitsemat kuvatiedostot ovat paketissa yatzy.zip. Suorittaaksesi ohjelman, lataa ja pura paketti. Nyt voit ajaa .jar-tiedoston!
+[Jar-tiedosto](/yatzy.zip) ja sen tarvitsemat kuvatiedostot ovat paketissa yatzy.zip. Suorittaaksesi ohjelman, lataa ja pura paketti. Nyt voit ajaa .jar-tiedoston!
 
 [Pit-raportti](https://htmlpreview.github.io/?https://github.com/iirekola/Yatzy/blob/master/dokumentaatio/pit-raportti/201610191443/index.html)
 
