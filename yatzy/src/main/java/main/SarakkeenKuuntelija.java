@@ -7,7 +7,8 @@ import javax.swing.*;
 import yatzy.Pelilogiikka;
 
 /**
- *
+ * SarakkeenKuuntelija reagoi taulukon sarakkeen klikkauksiin.
+ * 
  * @author iiris
  */
 public class SarakkeenKuuntelija implements ActionListener {
@@ -16,6 +17,13 @@ public class SarakkeenKuuntelija implements ActionListener {
     private ArrayList<JLabel> pisteet;
     private Kayttoliittyma k;
     
+    /**
+     * Konstruktori linkkaa kuuntelijan pelilogiikkaan ja käyttöliittymään sekä käyttöliittymän sarake- ja pistelistoihin.
+     * @param l pelilogiikka
+     * @param k käyttöliittymä
+     * @param sarakkeet lista sarakenappuloista
+     * @param pisteet lista JLabeleita, joihin pisteen kirjataan
+     */
     public SarakkeenKuuntelija(Pelilogiikka l, Kayttoliittyma k, ArrayList<JToggleButton> sarakkeet, ArrayList<JLabel> pisteet) {
         this.logiikka = l;
         this.pisteet = pisteet;
@@ -23,6 +31,12 @@ public class SarakkeenKuuntelija implements ActionListener {
         this.k = k;
     }
 
+    /**
+     * Metodi reagoi sarakkeen klikkaukseen. Se selvittää mitä saraketta klikattiin, pyytää logiikkaa laskemaan pisteet ja kirjoittaa pisteet nappulaa vastaavaan JLabeliin.
+     * Lopuksi metodi päivittää välisumman ja summan, lukitsee taulukon ja muuttaa ohjekentän tekstin.
+     * 
+     * @param e ActionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JToggleButton button = (JToggleButton) e.getSource();

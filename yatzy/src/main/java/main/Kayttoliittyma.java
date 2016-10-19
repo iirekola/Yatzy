@@ -231,6 +231,11 @@ public class Kayttoliittyma implements Runnable {
         }
     }
     
+    /**
+     * Asettaa ohjeistukseen uuden teksin.
+     * 
+     * @param teksti uusi ohjeistus
+     */
     public void setLabel(String teksti) {
         this.label.setText(teksti);
     }

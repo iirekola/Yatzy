@@ -6,7 +6,8 @@ import javax.swing.*;
 import yatzy.Pelilogiikka;
 
 /**
- *
+ * HeittonapinKuuntelija reagoi heittonapin klikkauksiin.
+ * 
  * @author iiris
  */
 public class HeittonapinKuuntelija implements ActionListener {
@@ -16,6 +17,13 @@ public class HeittonapinKuuntelija implements ActionListener {
     private int mikaVuoro;
     private JLabel ohjeet;
 
+    /**
+     * Konstruktori linkittää kuuntelijan pelilogiikkaan, käyttöliittymään ja JLabeliin johon ohjeistus päivitetään, sekä asettaa vuorolaskurin aloitusarvoonsa.
+     * 
+     * @param l pelilogiikka
+     * @param k käyttöliittymä
+     * @param ohjeet JLabel, jossa on vaihtuva ohjeteksti
+     */
     public HeittonapinKuuntelija(Pelilogiikka l, Kayttoliittyma k, JLabel ohjeet) {
         this.logiikka = l;
         this.k = k;
@@ -23,6 +31,11 @@ public class HeittonapinKuuntelija implements ActionListener {
         this.ohjeet = ohjeet;
     }
 
+    /**
+     * Metodi taristaa mikä pelin vaihe on käynnissä ja heittää asiaankuuluvat nopat, päivittää ohjeet ja kasvattaa vuorolaskurin arvoa.
+     * 
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -42,6 +55,11 @@ public class HeittonapinKuuntelija implements ActionListener {
         }
     }
 
+    /**
+     * Metodi päivittää noppien kuvat, muuttaa ohjetekstin ja kasvattaa vuoroa. 
+     * 
+     * @param labelTeksti uusi ohjeteksti
+     */
     public void paivita(String labelTeksti) {
         k.paivitaNopat();
         this.ohjeet.setText(labelTeksti);
